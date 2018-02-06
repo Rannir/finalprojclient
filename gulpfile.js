@@ -72,7 +72,7 @@ const prodOptionsForHTML = {
 const htmlTask = function(isProd) {
     gulp.src(projectPaths.html)
         .on('error', gutil.log)
-        //.pip(rename({dirname: ''}))
+        .pipe(rename({dirname: ''}))
         .pipe(gulpIf(isProd, htmlmin(prodOptionsForHTML)))
         .pipe(gulp.dest(createPath(isProd, '/HTML')));
 }

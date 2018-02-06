@@ -5,7 +5,7 @@ const personalTrainer = angular.module('personalTrainer', ['ngResource', 'ngRout
 personalTrainer.config(['$routeProvider', ($routeProvider) => {
     $routeProvider.when('/',
     {
-        templateUrl: /*!*/ 'html/main.html',
+        templateUrl: /*!*/ 'HTML/main.html',
         controller: 'mainController',
         controllerAs: 'ctrl'
     })

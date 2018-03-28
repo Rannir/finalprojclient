@@ -134,7 +134,7 @@ const compassTask = function(isProd)
 {
     const compassOptions ={
         sass : 'app',
-        css : createPath(isProd, '/js'),
+        css : createPath(isProd, '/css'),
         style : (isProd)? 'compressed': 'expanded',
         comments: !isProd,
         logging: !isProd,

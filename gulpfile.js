@@ -42,6 +42,7 @@ const projectPaths = {
     javascript: ['app/imports.js',
                  'app/*.js',
                  'app/**/*.js'],
+    image: ['app/images/*'],
     styles: ['app/*.scss',
              'app/**/.scss']
 };
@@ -113,7 +114,7 @@ const jsTask = function(isProd)
     }
     gulp.src(projectPaths.javascript)
         .pipe(strip({ safe: true }))
-        .pipe(gulpIf(!isProd, sourcemaps.init()))
+        //.pipe(gulpIf(!isProd, sourcemaps.init()))
         .on('error', gutil.log)
         .pipe(through2.obj(jsHelperFunc))
         .pipe(strip({safe: true}))
@@ -122,7 +123,7 @@ const jsTask = function(isProd)
         .pipe(concat('app.js'))
         .pipe(gulpIf(isProd, buffer()))
         .pipe(gulpIf(isProd, uglify({ mangle: false })))
-        .pipe(gulpIf(!isProd, sourcemaps.write()))
+        //.pipe(gulpIf(!isProd, sourcemaps.write()))
         .pipe(gulp.dest(createPath(isProd, '/js')))
         .on('end', () =>
         {
@@ -157,7 +158,7 @@ const imageTask = function(isProd)
 {
     gulp.src(projectPaths.image)
         .on('error', gutil.log)
-        .pipe(createPath(isProd, '/css/images'));
+        .pipe(gulp.dest(createPath(isProd, '/css/images')));
 }
 
 const allTasks = function(isProd)

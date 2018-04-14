@@ -1,3 +1,43 @@
-p {
-    color: red;
+html, body{
+    background: url(../css/images/background.jpeg) !important;
+}
+
+.sideBackground{
+    height: 50%;
+    width: 40%;
+    position: absolute;
+    right: 0;
+    top: 25%;
+    z-index: 0;
+}
+
+.main{
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 40%;
+    margin-top: -9em;
+    margin-left: -15em;
+}
+
+button{
+    width: 110px;
+    background: transparent !important;
+    border: 1px solid black !important;
+}
+
+.imgInfo{
+    height: 15%;
+    top: 15%;
+}
+
+.cellInfo{
+    width: 33%;
+    height: 33%;
+}
+
+.divInfo{
+    text-align: center;
+    display: flex;
+    width: 60%;
 }

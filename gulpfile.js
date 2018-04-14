@@ -44,7 +44,7 @@ const projectPaths = {
                  'app/**/*.js'],
     image: ['app/images/*'],
     styles: ['app/*.scss',
-             'app/**/.scss']
+             'app/**/*.scss']
 };
 
 const cleanPaths = [`${createPath(false)}/*`, `${createPath(true)}`];
@@ -142,7 +142,7 @@ const compassTask = function(isProd)
         debug : !isProd,
         require: ['susy', 'breakpoint']
     };
-    gulp.src(projectPaths.styles)
+    gulp.src(['app/styles.scss'])
         .pipe(compass(compassOptions))
         .on('error', gutil.log);
 };

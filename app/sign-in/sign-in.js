@@ -1,6 +1,6 @@
 angular.module('personalTrainer').
-controller('mainController', function($scope) {
+controller('signInController', function($scope) {
     const ctrl = this;
-    ctrl.ypo =0 ;
+
     return ctrl;
 });

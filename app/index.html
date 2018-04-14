@@ -1,10 +1,12 @@
 <html>
     <header>
         <script src="js/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/css3-animate-it.js"></script>
         <link rel="stylesheet" type="text/css" href="css/styles.css"/>
     </header>
-    <body background="css/images/background.jpeg" ng-app="personalTrainer">
-        <div ng-view></div>
-        <div ng-controller="indexController as ctrl"></div>
+    <body ng-app="personalTrainer">
+        <div style="height: 100%; width: 100%; "  class=" container" ng-view></div>
+       <img class="sideBackground" src="css\images\tomatoBackground.png">
     </body>
 </html>

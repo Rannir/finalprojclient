@@ -3,6 +3,7 @@
 global.angular = require('angular');
 global.$ = require('jquery');
 global.jquery = $;
+global.jQuery = $;
 global.ngRoute = require('angular-route');
 global.ngResource = require('angular-resource');
 global.ngAnimate = require('angular-animate');

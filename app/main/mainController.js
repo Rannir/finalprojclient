@@ -1,6 +1,11 @@
 angular.module('personalTrainer').
-controller('mainController', function($scope) {
+controller('mainController', function($scope, $location) {
     const ctrl = this;
-    ctrl.ypo =0 ;
+
+    ctrl.register = function () {
+        $location.path("/register");
+    }
+
+   
     return ctrl;
 });

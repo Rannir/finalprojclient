@@ -43,6 +43,7 @@ const projectPaths = {
                  'app/*.js',
                  'app/**/*.js'],
     image: ['app/images/*'],
+    externalCss: ['app/external-scripts/*.css'],
     styles: ['app/*.scss',
              'app/**/*.scss']
 };
@@ -87,17 +88,25 @@ const htmlRootTask = function(isProd) {
 }
 
 const jsHelperFunc = function(file, enc, next) {
-    browserify(({entries: file})).transform("babelify", { presets: ['es2015'] })
-        .bundle((err, res) =>
-        {
-            if(err){
-                console.log(err);
-                return;
-            }
+    const arrayHelper = file.path.split('\\');
+    const filename = arrayHelper[arrayHelper.length - 1];
 
-            file.contents = res;
-            next(null, file);
-        })
+    if(filename == 'css3-animate-it.js') {
+        next(null, file);
+    }
+    else {
+        browserify(({entries: file})).transform("babelify", { presets: ['es2015'] })
+            .bundle((err, res) =>
+            {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+    
+                file.contents = res;
+                next(null, file);
+            })
+    }
 };
 
 const cleanTask = function() {
@@ -161,6 +170,13 @@ const imageTask = function(isProd)
         .pipe(gulp.dest(createPath(isProd, '/css/images')));
 }
 
+const takeCssScriptsTask = function(isProd) 
+{
+    gulp.src(projectPaths.externalCss)
+        .on('error', gutil.log)
+        .pipe(gulp.dest(createPath(isProd, '/css')));
+}
+
 const allTasks = function(isProd)
 {
     randomId = shortid.generate();
@@ -173,6 +189,7 @@ const allTasks = function(isProd)
         compassTask(isProd);
         imageTask(isProd);
         fontsTask(isProd);
+        takeCssScriptsTask(isProd);
     });
 };
 
@@ -206,6 +223,10 @@ gulp.task('image', () => {
 
 gulp.task('fonts', () => {
     fontsTask(false);
+});
+
+gulp.task('takeCssScripts', () => {
+    takeCssScriptsTask(false);
 });
 
 gulp.task('all', () => {

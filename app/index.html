@@ -1,12 +1,51 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .box {
+                width:400px;
+                height:400px;
+                background-color:#aaaa00;
+                margin:150px auto;
+            }
+        </style>
+    </head>
+        
+    <body>
+        <div class="animatedParent">
+            <div class=" slowest animated bounceInDown box"></div>
+        </div>
+        
+        <div class="animatedParent">
+            <div class="animated fadeIn box"></div>
+        </div>
+        
+        <div class="animatedParent">
+            <div class="animated growIn box"></div>
+        </div>
+        
+        <div class="animatedParent">
+            <div class="animated bounceInRight box"></div>
+        </div>
+        
+        <div class="animatedParent">
+            <div class="animated fadeInDown box"></div>
+        </div>
+
+        <script src="js/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+        <link rel="stylesheet" type="text/css" href="css/animations.css"/>
+</html> -->
+
 <html>
     <header>
-        <script src="js/app.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/css3-animate-it.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+      
     </header>
     <body ng-app="personalTrainer">
-        <div style="height: 100%; width: 100%; "  class=" container" ng-view></div>
-       <img class="sideBackground" src="css\images\tomatoBackground.png">
+        <div  ng-view ></div> 
+        <img class="sideBackground" src="css\images\tomatoBackground.png"> 
     </body>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animations.css"/>
 </html>

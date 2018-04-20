@@ -13,3 +13,7 @@ global.ngMaterial = require('angular-material');
 global.angularSpinner = require('angular-spinner');
 global.Spinner = require('spin.js');
 global.bootstrap = require('bootstrap');
+
+angular.isUndefinedOrNull = function(obj) {
+    return angular.isUndefined(obj) || obj === null || obj === '';
+}

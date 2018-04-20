@@ -8,6 +8,14 @@
       </p>
     </section>
     <section style="text-align: center;" >
+      <md-input-container>
+          <label>Email</label>
+          <input ng-model="ctrl.email" type="email">
+      </md-input-container>
+      <md-input-container>
+          <label>Password</label>
+          <input ng-model="ctrl.password" type="password">
+      </md-input-container>
       <md-button class="md-raised" ng-click="ctrl.register()">Register</md-button>
       <md-button class="md-raised" ng-click="ctrl.login()">Sign in</md-button>
     </section>

@@ -13,7 +13,7 @@ personalTrainer.config(['$routeProvider', ($routeProvider) => {
         templateUrl: /*!*/ 'HTML/register.html',
         controller: 'registerController',
         controllerAs: 'ctrl'
-    }).when('/login',
+    }).when('/main',
     {
         templateUrl: /*!*/ 'HTML/loggedInMain.html',
         controller: 'loggedInMainController',

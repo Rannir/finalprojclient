@@ -42,7 +42,7 @@ const projectPaths = {
     javascript: ['app/imports.js',
                  'app/*.js',
                  'app/**/*.js'],
-    image: ['app/images/*'],
+    images: ['app/images/*'],
     externalCss: ['app/external-scripts/*.css'],
     styles: ['app/*.scss',
              'app/**/*.scss']
@@ -165,7 +165,7 @@ const fontsTask = function(isProd)
 
 const imageTask = function(isProd)
 {
-    gulp.src(projectPaths.image)
+    gulp.src(projectPaths.images)
         .on('error', gutil.log)
         .pipe(gulp.dest(createPath(isProd, '/css/images')));
 }
@@ -180,11 +180,11 @@ const takeCssScriptsTask = function(isProd)
 const allTasks = function(isProd)
 {
     randomId = shortid.generate();
-    console.log(cleanPaths[0]);
     del(cleanPaths).then(paths => {
         console.log('deleted all files in cleanPaths parameter, rebuilding now!');
         htmlTask(isProd);
         htmlRootTask(isProd);
+        takeCssScriptsTask(isProd);
         jsTask(isProd);
         compassTask(isProd);
         imageTask(isProd);
@@ -243,7 +243,7 @@ gulp.task('default', ['all'], function() {
     gulp.watch(projectPaths.htmlRoot, ['htmlRoot']);
     gulp.watch(projectPaths.javascript, ['js']);
     gulp.watch(projectPaths.styles, ['compass']);
-    gulp.watch(projectPaths.image, ['image']);
+    gulp.watch(projectPaths.images, ['image']);
     gulp.watch(projectPaths.fonts, ['fonts']);
 
 });

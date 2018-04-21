@@ -8,7 +8,7 @@ controller('loggedOutMainController', function($scope, $location, $http, consts,
     
     ctrl.login = function () {
         userService.getUser({ id: 4 } ,function() {
-            $location.path("/login");
+            $location.path("/main");
         });
     }
 

@@ -99,6 +99,7 @@ const jsHelperFunc = function(file, enc, next) {
             .bundle((err, res) =>
             {
                 if(err){
+                    console.log(filename);
                     console.log(err);
                     return;
                 }
@@ -172,6 +173,7 @@ const imageTask = function(isProd)
 
 const takeCssScriptsTask = function(isProd) 
 {
+    console.log(projectPaths.externalCss);
     gulp.src(projectPaths.externalCss)
         .on('error', gutil.log)
         .pipe(gulp.dest(createPath(isProd, '/css')));
@@ -189,7 +191,6 @@ const allTasks = function(isProd)
         compassTask(isProd);
         imageTask(isProd);
         fontsTask(isProd);
-        takeCssScriptsTask(isProd);
     });
 };
 

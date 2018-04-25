@@ -1,6 +1,7 @@
 'use strict';
 
 const personalTrainer = angular.module('personalTrainer', ['ngResource', 'ngRoute', 'ngAnimate', 'angularSpinner', 'ngMaterial']);
+const personalTrainer = angular.module('personalTrainer', ['toaster', 'ngResource', 'ngRoute', 'ngAnimate', 'angularSpinner', 'ngMaterial']);
 
 personalTrainer.config(['$routeProvider', ($routeProvider) => {
     $routeProvider.when('/',

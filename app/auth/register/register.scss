@@ -1,3 +1,31 @@
 p{
     
+.divReg{
+    height: 50%;
+    width: 25%;
+    position: absolute;
+    right: 40%;
+    z-index: 0;
+}
+md-input-container.md-default-theme label, md-input-container label, md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder{
+    color: rgba(115, 107, 107, 0.97);
+}
+
+.weightGoal{
+    top: 15%;
+}
+
+.startMyJourneybtn{
+    width: 160px;
+}
+
+.genderLable{
+    margin-bottom: 42px;
+}
+.gender{
+    display: table-cell;
+    }
+
+.sectionReg{
+    display: inline-grid;
 }

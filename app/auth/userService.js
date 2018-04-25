@@ -18,5 +18,18 @@ service('userService', function($http, consts) {
         }
     }
 
+    srv.login = function(props ,onDoneFunc) {
+        if(angular.isUndefinedOrNull(user)) {
+            console.log('login user');
+            $http.post(`${consts.loginApi}`, props).then(function({data}) {
+                onDoneFunc(data);
+            });
+        }
+        else {
+            console.log('we have the user here!')
+            onDoneFunc(user);
+        }
+    }
+
     return srv;
 });

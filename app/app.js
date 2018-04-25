@@ -20,6 +20,12 @@ personalTrainer.config(['$routeProvider', ($routeProvider) => {
         controller: 'loggedInMainController',
         controllerAs: 'ctrl'
     })
+    .when('/menu',
+    {
+        templateUrl: /*!*/ 'HTML/menu.html',
+        controller: 'menuController',
+        controllerAs: 'ctrl'
+    })
 }]);
 
 personalTrainer.config = {

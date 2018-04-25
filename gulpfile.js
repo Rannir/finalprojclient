@@ -42,7 +42,8 @@ const projectPaths = {
     javascript: ['app/imports.js',
                  'app/*.js',
                  'app/**/*.js'],
-    image: ['app/images/*'],
+    images: ['app/images/*'],
+    externalCss: ['app/external-scripts/*.css'],
     styles: ['app/*.scss',
              'app/**/*.scss']
 };
@@ -87,17 +88,26 @@ const htmlRootTask = function(isProd) {
 }
 
 const jsHelperFunc = function(file, enc, next) {
-    browserify(({entries: file})).transform("babelify", { presets: ['es2015'] })
-        .bundle((err, res) =>
-        {
-            if(err){
-                console.log(err);
-                return;
-            }
+    const arrayHelper = file.path.split('\\');
+    const filename = arrayHelper[arrayHelper.length - 1];
 
-            file.contents = res;
-            next(null, file);
-        })
+    if(filename == 'css3-animate-it.js') {
+        next(null, file);
+    }
+    else {
+        browserify(({entries: file})).transform("babelify", { presets: ['es2015'] })
+            .bundle((err, res) =>
+            {
+                if(err){
+                    console.log(filename);
+                    console.log(err);
+                    return;
+                }
+    
+                file.contents = res;
+                next(null, file);
+            })
+    }
 };
 
 const cleanTask = function() {
@@ -156,19 +166,27 @@ const fontsTask = function(isProd)
 
 const imageTask = function(isProd)
 {
-    gulp.src(projectPaths.image)
+    gulp.src(projectPaths.images)
         .on('error', gutil.log)
         .pipe(gulp.dest(createPath(isProd, '/css/images')));
+}
+
+const takeCssScriptsTask = function(isProd) 
+{
+    console.log(projectPaths.externalCss);
+    gulp.src(projectPaths.externalCss)
+        .on('error', gutil.log)
+        .pipe(gulp.dest(createPath(isProd, '/css')));
 }
 
 const allTasks = function(isProd)
 {
     randomId = shortid.generate();
-    console.log(cleanPaths[0]);
     del(cleanPaths).then(paths => {
         console.log('deleted all files in cleanPaths parameter, rebuilding now!');
         htmlTask(isProd);
         htmlRootTask(isProd);
+        takeCssScriptsTask(isProd);
         jsTask(isProd);
         compassTask(isProd);
         imageTask(isProd);
@@ -208,6 +226,10 @@ gulp.task('fonts', () => {
     fontsTask(false);
 });
 
+gulp.task('takeCssScripts', () => {
+    takeCssScriptsTask(false);
+});
+
 gulp.task('all', () => {
     allTasks(false);
 });
@@ -222,7 +244,7 @@ gulp.task('default', ['all'], function() {
     gulp.watch(projectPaths.htmlRoot, ['htmlRoot']);
     gulp.watch(projectPaths.javascript, ['js']);
     gulp.watch(projectPaths.styles, ['compass']);
-    gulp.watch(projectPaths.image, ['image']);
+    gulp.watch(projectPaths.images, ['image']);
     gulp.watch(projectPaths.fonts, ['fonts']);
 
 });

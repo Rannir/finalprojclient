@@ -1,0 +1,45 @@
+<div>
+    <section ng-if="ctrl.section == 1">
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="ctrl.model.email" type="email">
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input ng-model="ctrl.model.password" type="password">
+        </md-input-container>
+        <md-input-container>
+            <label>Confirm Password</label>
+            <input ng-model="ctrl.model.confirmPassword" type="password">
+        </md-input-container>
+        <md-button class="md-raised" ng-click="ctrl.moveSection()">next</md-button>
+    </section>
+    <section ng-if="ctrl.section == 2">
+        <md-input-container>
+            <label>Full Name</label>
+            <input ng-model="ctrl.model.fullName" type="text">
+        </md-input-container>
+        <md-input-container>
+            <label>Birthday</label>
+            <input ng-model="ctrl.model.birthday" type="date">
+        </md-input-container>
+        <md-input-container>
+            <label>Height</label>
+            <input ng-model="ctrl.model.height" type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>weight</label>
+            <input ng-model="ctrl.model.weight" type="number">
+        </md-input-container>
+        <md-button class="md-raised" ng-click="ctrl.moveSection()">next</md-button>
+    </section>
+    <section ng-if="ctrl.section == 3">
+        What is your weight goal?
+        <img class="imgInfo" src="css\images\front_icon_scales.png">
+        <md-input-container>
+            <label>weight</label>
+            <input ng-model="ctrl.model.weight" type="number">
+        </md-input-container>
+        <md-button class="md-raised">Start my journey</md-button>
+    </section>
+</div>

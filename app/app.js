@@ -5,8 +5,18 @@ const personalTrainer = angular.module('personalTrainer', ['ngResource', 'ngRout
 personalTrainer.config(['$routeProvider', ($routeProvider) => {
     $routeProvider.when('/',
     {
-        templateUrl: /*!*/ 'HTML/main.html',
-        controller: 'mainController',
+        templateUrl: /*!*/ 'HTML/loggedOutMain.html',
+        controller: 'loggedOutMainController',
+        controllerAs: 'ctrl'
+    }).when('/register',
+    {
+        templateUrl: /*!*/ 'HTML/register.html',
+        controller: 'registerController',
+        controllerAs: 'ctrl'
+    }).when('/main',
+    {
+        templateUrl: /*!*/ 'HTML/loggedInMain.html',
+        controller: 'loggedInMainController',
         controllerAs: 'ctrl'
     })
     .when('/menu',

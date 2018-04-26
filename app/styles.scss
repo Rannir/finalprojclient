@@ -2,3 +2,7 @@
 @import "auth/register/register.scss";
 @import "../node_modules/angular-material/angular-material.scss";
 //@import "external-scripts/animate.scss";
+
+html, body{
+    background: url(../css/images/background.jpeg) !important;
+}

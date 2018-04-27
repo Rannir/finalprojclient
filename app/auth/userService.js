@@ -22,6 +22,7 @@ service('userService', function($http, consts) {
         if(angular.isUndefinedOrNull(user)) {
             console.log('login user');
             $http.post(`${consts.loginApi}`, props).then(function({data}) {
+                user = data;
                 onDoneFunc(data);
             });
         }

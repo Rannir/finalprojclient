@@ -6,5 +6,7 @@ constant('consts', {
     algApi: `${serverUrl}/alg`,
     registerApi: `${serverUrl}/api/user/Register`,
     menuApi: `${serverUrl}/menu`,
-    loginApi: `${serverUrl}/api/user/Login`
+    loginApi: `${serverUrl}/api/user/Login`,
+    maxMenu: 4,
+    minMenu:0
 });

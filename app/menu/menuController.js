@@ -13,10 +13,14 @@ controller('menuController', function($scope, $http, consts, userService) {
     }
 
     ctrl.nextMenu = function() {
-        ctrl.selectedMenu = ctrl.menus[++ctrl.menuIndex];
+        if (ctrl.menuIndex < consts.maxMenu)
+            ctrl.selectedMenu = ctrl.menus[++ctrl.menuIndex];
     }
     ctrl.prevMenu = function() {
-        ctrl.selectedMenu = ctrl.menus[--ctrl.menuIndex];
+        if (ctrl.menuIndex > consts.minMenu)
+            ctrl.selectedMenu = ctrl.menus[--ctrl.menuIndex];
+    }
+    ctrl.chooseMenu = function() {
     }
     
     ctrl.load();

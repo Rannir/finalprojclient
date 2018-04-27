@@ -13,17 +13,15 @@ angular.module('personalTrainer').controller('registerController', function($sco
             if (ctrl.checkValid(1))
             {
                 this.section +=1;
-                userForm.$setPristine();
             }
             else
                 userForm.$setSubmitted;
         }
         else if(sectionName == 2)
         {
-            if (ctrl.checkValid(1))
+            if (ctrl.checkValid(2))
             { 
                 this.section +=1;
-                userForm.$setPristine();
             }
             else
                 userForm.$setSubmitted;
@@ -59,7 +57,7 @@ angular.module('personalTrainer').controller('registerController', function($sco
         {
             ctrl.model.Goal.StartingWeight = ctrl.model.Measurement.Weight;
             $http.post(`${consts.registerApi}`, ctrl.model).then(function({data}) {
-                $location.path("/");
+                $location.path("/menu");
             });
         }
         else

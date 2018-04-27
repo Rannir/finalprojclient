@@ -17,9 +17,6 @@
                 <label>Password</label>
                 <input name="password" ng-model="ctrl.model.Password" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/"
                  required invalid type="password" >
-                    <md-tooltip mg-if="userForm.password.$error.pattern" md-direction="left">Refresh</md-tooltip>
-                 <!-- <div class="custom-error"  ng-show="userForm.password.$error.pattern">
-                        Not a valid subnet, should be i.e. 10.x.y. (3 bytes only)</div> -->
             </md-input-container>
             <md-input-container>
                 <label>Confirm Password</label>

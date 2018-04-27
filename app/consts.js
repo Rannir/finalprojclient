@@ -4,6 +4,7 @@ angular.module('personalTrainer').
 constant('consts', {
     userApi: `${serverUrl}/user`,
     algApi: `${serverUrl}/alg`,
-    registerApi: `${serverUrl}/user/Register`,
-    loginApi: `${serverUrl}/user/Login`
+    registerApi: `${serverUrl}/api/user/Register`,
+    menuApi: `${serverUrl}/menu`,
+    loginApi: `${serverUrl}/api/user/Login`
 });

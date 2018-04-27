@@ -10,11 +10,23 @@ angular.module('personalTrainer').controller('registerController', function($sco
     ctrl.moveSection = function(sectionName){
         if(sectionName == 1)
         {
-            (ctrl.checkValid(1))? this.section +=1 : userForm.$setSubmitted;
+            if (ctrl.checkValid(1))
+            {
+                this.section +=1;
+                userForm.$setPristine();
+            }
+            else
+                userForm.$setSubmitted;
         }
         else if(sectionName == 2)
         {
-            (ctrl.checkValid(2))? this.section +=1 : userForm.$setSubmitted;
+            if (ctrl.checkValid(1))
+            { 
+                this.section +=1;
+                userForm.$setPristine();
+            }
+            else
+                userForm.$setSubmitted;
         }
         
     }

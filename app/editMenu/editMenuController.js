@@ -1,5 +1,5 @@
 angular.module('personalTrainer').
-controller('menuController', function($scope, $http) {
+controller('editMenuController', function($scope, $http) {
     const ctrl = this;
     ctrl.selectedMenu = null;
     ctrl.menuIndex = 0;

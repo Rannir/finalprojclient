@@ -1,0 +1,41 @@
+<div class="menuPage">
+    <section class="middleSection">
+        <div class="floatMenu">
+            <h2 class="MenuName">Menu {{ctrl.selectedMenu.MenuID}}</h2>
+            <table class="menuTable">
+                <tr>
+                    <td>
+                        <h3>Breakfast</h3>
+                    </td>
+                </tr>
+                <tr ng-repeat="x in ctrl.selectedMenu.Breakfast">
+                    <td>
+                        <md-select ng-model="user" md-on-open="loadUsers()">
+                            <md-option>{{ x.Name }}</md-option>
+                            <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+                        </md-select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>Lunch</h3>
+                    </td>
+                </tr>
+                <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
+                    <td>{{ x.Name }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>Dinner</h3>
+                    </td>
+                </tr>
+                <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
+                    <td>{{ x.Name }}</td>
+                </tr>
+            </table>
+        </div>        
+        <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
+        <md-button class="md-raised" ng-click="ctrl.nextMenu()">Next</md-button>
+        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button>
+    </section>
+</div>

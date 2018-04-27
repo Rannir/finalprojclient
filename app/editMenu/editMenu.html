@@ -8,11 +8,10 @@
                         <h3>Breakfast</h3>
                     </td>
                 </tr>
-                <tr ng-repeat="x in ctrl.selectedMenu.Breakfast">
+                <tr ng-repeat="food in ctrl.menu.Breakfast">
                     <td>
-                        <md-select ng-model="user" md-on-open="loadUsers()">
-                            <md-option>{{ x.Name }}</md-option>
-                            <md-option ng-value="user" ng-repeat="user in users">{{user.name}}</md-option>
+                        <md-select ng-model="food" md-on-open="ctrl.loadReplacements(food)">
+                            <md-option ng-value="repFood" ng-repeat="repFood in ctrl.replacements">{{repFood.Name}}</md-option>
                         </md-select>
                     </td>
                 </tr>
@@ -21,7 +20,7 @@
                         <h3>Lunch</h3>
                     </td>
                 </tr>
-                <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
+                <!-- <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
                     <td>{{ x.Name }}</td>
                 </tr>
                 <tr>
@@ -31,11 +30,11 @@
                 </tr>
                 <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
                     <td>{{ x.Name }}</td>
-                </tr>
+                </tr> -->
             </table>
         </div>        
-        <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
+        <!-- <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
         <md-button class="md-raised" ng-click="ctrl.nextMenu()">Next</md-button>
-        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button>
+        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button> -->
     </section>
 </div>

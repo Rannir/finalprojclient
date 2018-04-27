@@ -1,22 +1,14 @@
 angular.module('personalTrainer').
-controller('editMenuController', function($scope, $http) {
+controller('editMenuController', function($scope, $http, userService) {
     const ctrl = this;
-    ctrl.selectedMenu = null;
-    ctrl.menuIndex = 0;
 
     ctrl.load = function() {
-        $http.get('http://localhost/PersonalTrainerServer/Menu')
-            .then(function(response){
-                ctrl.menus = response.data;
-                ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
-            });
+        ctrl.menu = userService.getUser().menu;
     }
 
-    ctrl.nextMenu = function() {
-        ctrl.selectedMenu = ctrl.menus[++ctrl.menuIndex];
-    }
-    ctrl.prevMenu = function() {
-        ctrl.selectedMenu = ctrl.menus[--ctrl.menuIndex];
+    ctrl.loadReplacements = function(food) {
+        ctrl.replacements = [];
+        ctrl.replacements.add(food);
     }
     
     ctrl.load();

@@ -26,6 +26,12 @@ personalTrainer.config(['$routeProvider', ($routeProvider) => {
         controller: 'menuController',
         controllerAs: 'ctrl'
     })
+    .when('/editMenu',
+    {
+        templateUrl: /*!*/ 'HTML/editMenu.html',
+        controller: 'editMenuController',
+        controllerAs: 'ctrl'
+    })
     .when('/updateweight',
     {
         templateUrl: /*!*/ 'HTML/update-weight.html',

@@ -1,5 +1,4 @@
-angular.module('personalTrainer').
-controller('menuController', function($scope, $http, consts, userService) {
+angular.module('personalTrainer').controller('menuController', function($scope, $http, consts, userService) {
     const ctrl = this;
     ctrl.selectedMenu = null;
     ctrl.menuIndex = 0;
@@ -21,6 +20,10 @@ controller('menuController', function($scope, $http, consts, userService) {
             ctrl.selectedMenu = ctrl.menus[--ctrl.menuIndex];
     }
     ctrl.chooseMenu = function() {
+    }
+    ctrl.editMenu = function() {
+        userService.getUser().menu = ctrl.menus[ctrl.menuIndex];
+        $location.path("/editMenu");
     }
     
     ctrl.load();

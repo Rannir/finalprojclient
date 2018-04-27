@@ -1,22 +1,26 @@
 <div class="menuPage">
     <section class="middleSection">
         <div class="floatMenu">
-            <h2 class="MenuName">Menu {{ctrl.menuIndex +1}}</h2>
+            <h2 class="MenuName">Menu {{ctrl.selectedMenu.MenuID}}</h2>
             <table class="menuTable">
                 <tr>
                     <td>
                         <h3>Breakfast</h3>
                     </td>
                 </tr>
-                <tr ng-repeat="x in ctrl.selectedMenu.Breakfast">
-                    <td>{{ x.Name }}</td>
+                <tr ng-repeat="food in ctrl.menu.Breakfast">
+                    <td>
+                        <md-select ng-model="food" md-on-open="ctrl.loadReplacements(food)">
+                            <md-option ng-value="repFood" ng-repeat="repFood in ctrl.replacements">{{repFood.Name}}</md-option>
+                        </md-select>
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <h3>Lunch</h3>
                     </td>
                 </tr>
-                <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
+                <!-- <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
                     <td>{{ x.Name }}</td>
                 </tr>
                 <tr>
@@ -26,12 +30,11 @@
                 </tr>
                 <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
                     <td>{{ x.Name }}</td>
-                </tr>
+                </tr> -->
             </table>
         </div>        
-        <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
+        <!-- <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
         <md-button class="md-raised" ng-click="ctrl.nextMenu()">Next</md-button>
-        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button>
-        <md-button class="md-raised" ng-click="ctrl.editMenu()">Edit</md-button>
+        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button> -->
     </section>
 </div>

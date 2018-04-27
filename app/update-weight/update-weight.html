@@ -1,8 +1,11 @@
-<div class='animatedParent'>
-    <div class="fixPlace">
-        <img class="imgInfo" src="css\images\weight.png">
-        lets see where we are at
-        <input ng-model="ctrl.model.weight" type="number">
-    </div>
-    <md-button class="md-raised" ng-click="ctrl.update()">update progress!</md-button>
+<div class='divupdateweight'>
+    <section class='sectioninput'>
+        <img class="weightGoal" src="css\images\front_icon_scales.png">
+        Lets see where we are at
+        <md-input-container>
+            <label>Weight</label>
+            <input name="goalWeight" ng-model="ctrl.GoalWeight" required type="number">
+        </md-input-container>
+        <md-button  type="submit" class="md-raised startMyJourneybtn" ng-click="ctrl.register()">update</md-button>
+    </section>
 </div> 

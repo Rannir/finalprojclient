@@ -5,7 +5,7 @@ controller('menuController', function($scope, $http) {
     ctrl.menuIndex = 0;
 
     ctrl.load = function() {
-        $http.get('http://localhost:65129/Menu')
+        $http.get('http://localhost:PersonalTrainerServer/Menu')
             .then(function(response){
                 ctrl.menus = response.data;
                 ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];

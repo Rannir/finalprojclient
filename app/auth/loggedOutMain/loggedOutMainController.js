@@ -11,7 +11,7 @@ controller('loggedOutMainController' , function($scope, $location, $http, consts
         userService.login( ctrl.model ,function(user) {
             (user !=null)?$location.path("/main"): toaster.pop('error', "", "user doesnt exist");
         });
-    }
+    };
 
     return ctrl;
 });

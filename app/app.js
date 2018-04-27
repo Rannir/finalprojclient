@@ -1,6 +1,7 @@
 'use strict';
 
-const personalTrainer = angular.module('personalTrainer', ['toaster', 'ngResource', 'ngRoute', 'ngAnimate', 'angularSpinner', 'ngMaterial']);
+const personalTrainer = angular.module('personalTrainer', ['toaster', 'ngResource', 'ngRoute', 'ngAnimate', 'angularSpinner', 'ngMaterial', 'chart.js']);
+
 
 personalTrainer.config(['$routeProvider', ($routeProvider) => {
     $routeProvider.when('/',
@@ -23,6 +24,12 @@ personalTrainer.config(['$routeProvider', ($routeProvider) => {
     {
         templateUrl: /*!*/ 'HTML/menu.html',
         controller: 'menuController',
+        controllerAs: 'ctrl'
+    })
+    .when('/updateweight',
+    {
+        templateUrl: /*!*/ 'HTML/update-weight.html',
+        controller: 'updateWeightController',
         controllerAs: 'ctrl'
     })
 }]);

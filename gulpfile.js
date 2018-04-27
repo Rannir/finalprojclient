@@ -20,6 +20,7 @@ const transform = require('vinyl-transform');
 const through2 = require('through2');
 const shortid = require('shortid');
 const replace = require('gulp-replace');
+const _ = require('lodash');
 
 const createPath = function (isProd, suffix) {
     let result = `builds`;
@@ -40,6 +41,9 @@ const projectPaths = {
     html: ['app/**/*.html'],
     htmlRoot: ['app/*.html'],
     javascript: ['app/imports.js',
+                 'app/external-scripts/Chart.js',
+                 'app/external-scripts/angular-chart.js',
+                 'app/external-scripts/*.js',
                  'app/*.js',
                  'app/**/*.js'],
     images: ['app/images/*'],
@@ -87,11 +91,17 @@ const htmlRootTask = function(isProd) {
         .pipe(gulp.dest(createPath(isProd)));
 }
 
+const filesToIgnore = [
+    'angular-chart.js',
+    'css3-animate-it.js',
+    'Chart.js'
+];
+
 const jsHelperFunc = function(file, enc, next) {
     const arrayHelper = file.path.split('\\');
     const filename = arrayHelper[arrayHelper.length - 1];
 
-    if(filename == 'css3-animate-it.js') {
+    if(_.find(filesToIgnore, function(currIgnoreName) { return currIgnoreName === filename; })) {
         next(null, file);
     }
     else {

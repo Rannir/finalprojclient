@@ -7,6 +7,8 @@ constant('consts', {
     registerApi: `${serverUrl}/api/user/Register`,
     menuApi: `${serverUrl}/menu`,
     loginApi: `${serverUrl}/api/user/Login`,
+    insertNewApi: `${serverUrl}/api/menu/InsertNew`,
+    insertApi: `${serverUrl}/api/menu/Insert`,
     maxMenu: 4,
     minMenu:0
 });

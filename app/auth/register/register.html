@@ -3,11 +3,11 @@
         <section ng-if="ctrl.section == 1" class="sectionReg">
             <md-input-container>
                 <label>First Name</label>
-                <input name="firstName" ng-model="ctrl.model.FirstName" required type="text">
+                <input name="firstName" ng-model="ctrl.model.FirstName" required type="text" ng-pattern="/^[a-zA-Z]+$/">
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input name="lastName" ng-model="ctrl.model.LastName" required  type="text">
+                <input name="lastName" ng-model="ctrl.model.LastName" required  type="text" ng-pattern="/^[a-zA-Z]+$/">
             </md-input-container>
             <md-input-container>
                 <label>Email</label>

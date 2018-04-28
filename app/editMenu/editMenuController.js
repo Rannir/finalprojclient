@@ -11,6 +11,10 @@ controller('editMenuController', function($scope, $http, consts, userService) {
                 ctrl.menu = user.response.data;
             });
 
+        // $http.get(`${consts.nautritionGoalsApi}/`+ user.UserID)
+        //     .then(function(response){
+        //         ctrl.nautritionGoals = new nautritionGoalsRange(response.data);
+        // });
         $http.get(`${consts.nautritionGoalsApi}/`+ user.UserID)
             .then(function(response){
                 ctrl.nautritionGoals = new nautritionGoalsRange(response.data);

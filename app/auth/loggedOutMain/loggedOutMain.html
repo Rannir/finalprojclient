@@ -7,22 +7,26 @@
         But to eat intelligently is an art.
       </p>
     </section>
-    <section style="text-align: center;" >
-      <md-input-container>
-          <label>Email</label>
-          <input ng-model="ctrl.model.Email" type="email">
-      </md-input-container>
-      <md-input-container>
-          <label>Password</label>
-          <input ng-model="ctrl.model.Password" type="password">
-      </md-input-container>
-    </section>
-      <section style="text-align: center;" >
-      <md-input-container>
-      <md-button class="md-raised" ng-click="ctrl.register()">Register</md-button>
-      <md-button class="md-raised" ng-click="ctrl.login()">Sign in</md-button>
-    </md-input-container>
-    </section>
+    <form name="loginForm">
+        <section style="text-align: center;" >
+          <md-input-container>
+              <label>Email</label>
+              <input ng-model="ctrl.model.Email" required type="email" name="email">
+          </md-input-container>
+          <md-input-container>
+              <label>Password</label>
+              <input ng-model="ctrl.model.Password" required type="password" name="password" 
+              ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/">
+          </md-input-container>
+        </section>
+    
+        <section style="text-align: center;" >
+          <md-input-container>
+            <md-button class="md-raised" ng-click="ctrl.register()">Register</md-button>
+            <md-button class="md-raised" type="submit" ng-click="ctrl.login()">Sign in</md-button>
+          </md-input-container>
+      </section>
+    </form>
   </div>
 </div>
 <div class='animatedParent' >

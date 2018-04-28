@@ -1,4 +1,4 @@
-angular.module('personalTrainer').controller('registerController', function($scope, $http,$location, consts) {
+angular.module('personalTrainer').controller('registerController', function($scope, $http,$location, consts, passwordValidation, toaster) {
     const ctrl = this;
 
     ctrl.model = {FirstName:"", LastName:"", Birthday:null, Height:null, Gender:null, Email:"", Password:"", confirmPassword:"",
@@ -12,7 +12,12 @@ angular.module('personalTrainer').controller('registerController', function($sco
         {
             if (ctrl.checkValid(1))
             {
-                this.section +=1;
+                $http.get(`${consts.isUserExistsApi}?email=${ctrl.model.Email}`, this).then(function({data}) {
+                    if(!data)
+                        ctrl.section +=1;
+                    else
+                        toaster.pop('warning', "", "This email already exists in the system");
+                });
             }
             else
                 userForm.$setSubmitted;
@@ -21,7 +26,7 @@ angular.module('personalTrainer').controller('registerController', function($sco
         {
             if (ctrl.checkValid(2))
             { 
-                this.section +=1;
+                ctrl.section +=1;
             }
             else
                 userForm.$setSubmitted;
@@ -33,9 +38,13 @@ angular.module('personalTrainer').controller('registerController', function($sco
     {
         if(sectionName == 1)
         {
-            ( ctrl.model.Password!= ctrl.model.confirmPassword)
-            ?$scope.userForm.confirmPassword.$setValidity('The confirm password dont match to password', false):
-            $scope.userForm.confirmPassword.$setValidity('', true);
+            passwordValidation.checkValid(userForm.password.value ,function() {
+                if (ctrl.model.Password!= ctrl.model.confirmPassword)
+                {
+                    toaster.pop('warning', "", "The confirm password dont match to password");
+                }
+            });
+
             return userForm.firstName.checkValidity() &&  userForm.lastName.checkValidity() &&
                    userForm.email.checkValidity() && userForm.password.checkValidity()  && userForm.confirmPassword.checkValidity() &&
                    ctrl.model.Password == ctrl.model.confirmPassword &&
@@ -43,6 +52,8 @@ angular.module('personalTrainer').controller('registerController', function($sco
         }
         else if(sectionName == 2)
         {
+            if (userForm.birthday.checkValidity() && ctrl.model.Gender == null)
+                toaster.pop('warning', "", "You must select gender");
             return userForm.height.checkValidity() && ctrl.model.Gender != null &&
             userForm.meWeight.checkValidity() && userForm.meBodyFat.checkValidity()  && userForm.birthday.checkValidity();
         }

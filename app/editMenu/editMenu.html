@@ -3,34 +3,59 @@
         <div class="floatMenu">
             <h2 class="MenuName">Menu {{ctrl.selectedMenu.MenuID}}</h2>
             <table class="menuTable">
+                <div class="boundaryLine">
+                    <tr>
+                        <td>
+                            <h3>Breakfast</h3>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="food in ctrl.menu.Breakfast">
+                        <td>
+                            <md-select ng-model="ctrl.menu.Breakfast[$index]" md-on-open="ctrl.loadReplacements(1)" ng-change="ctrl.onChange()">
+                                <md-option ng-value="repFood" ng-repeat="repFood in ctrl.replacements">{{repFood.Name}}</md-option>
+                            </md-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Lunch</h3>
+                        </td>
+                    </tr>
+                    <!-- <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
+                        <td>{{ x.Name }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Dinner</h3>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
+                        <td>{{ x.Name }}</td>
+                    </tr> -->
+                </div>
                 <tr>
-                    <td>
-                        <h3>Breakfast</h3>
-                    </td>
-                </tr>
-                <tr ng-repeat="food in ctrl.menu.Breakfast">
-                    <td>
-                        <md-select ng-model="food" md-on-open="ctrl.loadReplacements(food)">
-                            <md-option ng-value="repFood" ng-repeat="repFood in ctrl.replacements">{{repFood.Name}}</md-option>
-                        </md-select>
-                    </td>
+                    <td>Acceptable Ranges</td>
                 </tr>
                 <tr>
-                    <td>
-                        <h3>Lunch</h3>
-                    </td>
-                </tr>
-                <!-- <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
-                    <td>{{ x.Name }}</td>
+                    <td>Protains</td>
+                    <td>Fats</td>
+                    <td>calories</td>
+                    <td>carbohydrates</td>
                 </tr>
                 <tr>
+                    <td class="exceedAlert">
+                        {{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}
+                    </td>
                     <td>
-                        <h3>Dinner</h3>
+                        {{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}
+                    </td>
+                    <td>
+                        {{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}
+                    </td>
+                    <td>
+                        {{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}
                     </td>
                 </tr>
-                <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
-                    <td>{{ x.Name }}</td>
-                </tr> -->
             </table>
         </div>        
         <!-- <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>

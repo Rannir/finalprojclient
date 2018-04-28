@@ -1,21 +1,25 @@
-var app = angular.module('personalTrainer').directive('passwordValidation', function() {
-  return {
-    restrict: 'A',
-    require: 'ngModel',
-    scope: false, 
-    link: function(scope, element, attr, ctrl) {
-      function myValidation(value) {
-        var Regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
-        if (Regex.test(value)) {
-          ctrl.$setValidity('good-password', true);
+angular.module('personalTrainer').
+service('passwordValidation', function($http, consts, toaster) {
+    const srv = this;
 
-        } else {
-          ctrl.$setValidity('weak-password', false);
-        }
-        return value;
-      }
-      ctrl.$parsers.push(myValidation);
-      ctrl.$formatters.push(myValidation);
+    var RegexNumber = new RegExp("^(?=.*[0-9])");
+    var RegexLC = new RegExp("^(?=.*[A-Z])");
+    var RegexSC = new RegExp("^(?=.*[a-z])");
+    var RegexAmount = new RegExp("^(?=.{8,})");
+
+
+    srv.checkValid = function(password ,onDoneFunc) {
+      if (!RegexNumber.test(password))
+        toaster.pop('warning', "", "Password must contain numbers");
+      else if (!RegexSC.test(password))
+        toaster.pop('warning', "", "Password must contain a small letter");
+      else if (!RegexLC.test(password))
+        toaster.pop('warning', "", "Password must contain a capital letter");
+      else if (!RegexAmount.test(password))
+        toaster.pop('warning', "", "Password must contain at least 8 letters");
+      else
+        onDoneFunc();
     }
-  };
+
+    return srv;
 });

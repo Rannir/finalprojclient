@@ -8,6 +8,7 @@ constant('consts', {
     insertOrUpdateUser: `${serverUrl}/api/user/InsertOrUpdate`,
     menuApi: `${serverUrl}/menu`,
     loginApi: `${serverUrl}/api/user/Login`,
+    isUserExistsApi: `${serverUrl}/api/user/IsUserExists`,
     insertNewApi: `${serverUrl}/api/menu/InsertNew`,
     insertApi: `${serverUrl}/api/menu/Insert`,
     maxMenu: 4,

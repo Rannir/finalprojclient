@@ -1,0 +1,15 @@
+<div class="divReg">
+    <section class="sectionReg">
+        What is your weight goal?
+        <img class="weightGoal" src="css\images\front_icon_scales.png">
+        <md-input-container>
+            <label>Weight</label>
+            <input name="goalWeight" ng-model="ctrl.GoalWeight" required type="number">
+        </md-input-container>
+        <md-input-container>
+            <label>BodyFat</label>
+            <input name="goalBodyFat" ng-model="ctrl.BodyFat" required type="number">
+        </md-input-container>
+        <md-button  type="submit" class="md-raised startMyJourneybtn" ng-click="ctrl.update()">update</md-button>
+    </section>
+</div>

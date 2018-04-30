@@ -34,6 +34,10 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
     ctrl.progress = function () {
         $location.path("/updateweight");
     }
+
+    ctrl.changeGoal = function() {
+        $location.path("/updategoal");
+    }
     
     return ctrl;
 });

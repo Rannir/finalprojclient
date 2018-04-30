@@ -11,6 +11,7 @@ constant('consts', {
     isUserExistsApi: `${serverUrl}/api/user/IsUserExists`,
     insertNewApi: `${serverUrl}/api/menu/InsertNew`,
     insertApi: `${serverUrl}/api/menu/Insert`,
+    MeasurementsByUser: `${serverUrl}/api/measurement/GetMeasurementsByUser`,
     maxMenu: 4,
     minMenu:0
 });

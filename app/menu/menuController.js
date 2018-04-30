@@ -5,16 +5,9 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     ctrl.menuIndex = 0;
 
     ctrl.load = function() {
-        // $http.get(`${consts.algApi}/${userService.getUser().UserID}`)
-        //     .then(function(response){
-        //         ctrl.menus = response.data;
-        //         ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
-        //     });
-
-            $http.get(`http://localhost/PersonalTrainerServer/Menu/1`)
+        $http.get(`${consts.algApi}/${userService.getUser().UserID}`)
             .then(function(response){
-                ctrl.menus = [];
-                ctrl.menus.push(response.data);
+                ctrl.menus = response.data;
                 ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
             });
     }

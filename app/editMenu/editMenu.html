@@ -1,40 +1,90 @@
 <div class="menuPage">
     <section class="middleSection">
         <div class="floatMenu">
-            <h2 class="MenuName">Menu {{ctrl.selectedMenu.MenuID}}</h2>
-            <table class="menuTable">
-                <div class="boundaryLine">
+            <h2 class="MenuName">Edit Menu</h2>
+            <table class="menuTable">                
                     <tr>
-                        <td>
+                        <td colspan=4>
                             <h3>Breakfast</h3>
                         </td>
                     </tr>
                     <tr ng-repeat="food in ctrl.menu.Breakfast">
-                        <td>
-                            <md-select ng-model="ctrl.menu.Breakfast[$index]" md-on-open="ctrl.loadReplacements(1)" ng-change="ctrl.onChange()">
-                                <md-option ng-value="repFood" ng-repeat="repFood in ctrl.replacements">{{repFood.Name}}</md-option>
+                        <td colspan=4>
+                            <md-select ng-model="ctrl.menu.Breakfast[$index]" 
+                                       ng-model-options="{trackBy: '$value.FoodID'}"
+                                       ng-change="ctrl.onChange()"
+                                       md-on-close="clearSearchTerm()"
+                                       data-md-container-class="selectdemoSelectHeader">
+                                <md-select-header class="demo-select-header">
+                                    <input ng-model="ctrl.searchTerm"
+                                           type="search"
+                                           placeholder="Search for a food item.."
+                                           class="demo-header-searchbox md-text"/>
+                                </md-select-header>
+                                <md-option ng-value="repFood" 
+                                           ng-repeat="repFood in ctrl.FoodByMealType.Breakfast | filter:ctrl.searchTerm">
+                                           {{repFood.Name}}
+                                </md-option>
                             </md-select>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan=4>
                             <h3>Lunch</h3>
                         </td>
                     </tr>
-                    <!-- <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
-                        <td>{{ x.Name }}</td>
+                    <tr ng-repeat="food in ctrl.menu.Lunch">
+                        
+                        <td colspan=4>
+                                <md-select ng-model="ctrl.menu.Lunch[$index]" 
+                                ng-model-options="{trackBy: '$value.FoodID'}"
+                                ng-change="ctrl.onChange()"
+                                md-on-close="clearSearchTerm()"
+                                data-md-container-class="selectdemoSelectHeader">
+                         <md-select-header class="demo-select-header">
+                             <input ng-model="ctrl.searchTerm"
+                                    type="search"
+                                    placeholder="Search for a food item.."
+                                    class="demo-header-searchbox md-text"/>
+                         </md-select-header>
+                         <md-option ng-value="repFood" 
+                                    ng-repeat="repFood in ctrl.FoodByMealType.Lunch | filter:ctrl.searchTerm">
+                                    {{repFood.Name}}
+                         </md-option>
+                     </md-select>
+                        </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan=4>
                             <h3>Dinner</h3>
                         </td>
                     </tr>
-                    <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
-                        <td>{{ x.Name }}</td>
-                    </tr> -->
+                    <tr ng-repeat="food in ctrl.menu.Dinner">
+                        <td colspan=4>
+                                <md-select ng-model="ctrl.menu.Dinner[$index]" 
+                                ng-model-options="{trackBy: '$value.FoodID'}"
+                                ng-change="ctrl.onChange()"
+                                md-on-close="clearSearchTerm()"
+                                data-md-container-class="selectdemoSelectHeader">
+                         <md-select-header class="demo-select-header">
+                             <input ng-model="ctrl.searchTerm"
+                                    type="search"
+                                    placeholder="Search for a food item.."
+                                    class="demo-header-searchbox md-text"/>
+                         </md-select-header>
+                         <md-option ng-value="repFood" 
+                                    ng-repeat="repFood in ctrl.FoodByMealType.Dinner | filter:ctrl.searchTerm">
+                                    {{repFood.Name}}
+                         </md-option>
+                     </md-select>
+                        </td>
+                    </tr>
                 </div>
                 <tr>
-                    <td>Acceptable Ranges</td>
+                        <td colspan=4></td>
+                </tr>
+                <tr>
+                    <td colspan=4>Acceptable Ranges</td>
                 </tr>
                 <tr>
                     <td>Protains</td>
@@ -43,23 +93,21 @@
                     <td>carbohydrates</td>
                 </tr>
                 <tr>
-                    <td class="exceedAlert">
+                    <td ng-class="{exceedAlert: ctrl.exceedProteins}">
                         {{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}
                     </td>
-                    <td>
+                    <td ng-class="{exceedAlert: ctrl.exceedFats}">
                         {{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}
                     </td>
-                    <td>
+                    <td ng-class="{exceedAlert: ctrl.exceedCalories}">
                         {{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}
                     </td>
-                    <td>
+                    <td ng-class="{exceedAlert: ctrl.exceedCarbohydrates}">
                         {{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}
                     </td>
                 </tr>
-            </table>
-        </div>        
-        <!-- <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
-        <md-button class="md-raised" ng-click="ctrl.nextMenu()">Next</md-button>
-        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button> -->
+            </table>    
+        </div>               
+        <md-button ng-click="ctrl.Finish()">Finish</md-button>
     </section>
 </div>

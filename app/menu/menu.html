@@ -2,7 +2,8 @@
     <section class="middleSection">
         <div class="floatMenu">
             <h2 class="MenuName">Menu {{ctrl.menuIndex +1}}</h2>
-            <table class="menuTable">
+            <md-progress-circular ng-show="ctrl.loader" md-diameter="80"></md-progress-circular>
+            <table class="menuTable" ng-show="!ctrl.loader"> 
                 <tr>
                     <td>
                         <h3>Breakfast</h3>
@@ -31,7 +32,7 @@
         </div>        
         <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
         <md-button class="md-raised" ng-click="ctrl.nextMenu()">Next</md-button>
-        <md-button class="md-raised" ng-click="ctrl.chooseMenu()">Choose</md-button>
-        <md-button class="md-raised" ng-click="ctrl.editMenu()">Edit</md-button>
+        <md-button class="md-raised" ng-click="ctrl.editMenu()">Choose</md-button>
+        <!-- <md-button class="md-raised" ng-click="ctrl.editMenu()">Edit</md-button> -->
     </section>
 </div>

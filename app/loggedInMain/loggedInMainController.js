@@ -38,6 +38,16 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
     ctrl.changeGoal = function() {
         $location.path("/updategoal");
     }
+
+    ctrl.editMenu = function() {
+        var user = userService.getUser();
+        
+        $http.get(`${consts.menuApi}/` + user.Goal.MenuID)
+            .then(function(response){
+                user.menu = response.data;
+                $location.path("/editMenu");
+        });
+    }
     
     return ctrl;
 });

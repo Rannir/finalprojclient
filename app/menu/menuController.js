@@ -5,10 +5,12 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     ctrl.menuIndex = 0;
 
     ctrl.load = function() {
+        ctrl.loader = true;
         $http.get(`${consts.algApi}/${userService.getUser().UserID}`)
             .then(function(response){
                 ctrl.menus = response.data;
                 ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
+                ctrl.loader = false;
             });
     }
 

@@ -2,23 +2,24 @@ angular.module('personalTrainer').
 controller('editMenuController', function($scope, $http, consts, userService, $mdDialog, $location) {
     const ctrl = this;
     ctrl.exceedProteins = ctrl.exceedFats = ctrl.exceedCarbohydrates = ctrl.exceedCalories = false;
+    ctrl.editable = false;
 
     ctrl.load = function() {
         ctrl.menu = userService.getUser().menu;
-        
-        $http.get(`${consts.nautritionGoalsApi}/`+ 1)
-                    .then(function(response2){
-                        ctrl.nautritionGoals = new nautritionGoalsRange(response2.data);
+        ctrl.loader = true;
+        $http.get(`${consts.nautritionGoalsApi}/`+ userService.getUser().UserID)
+                    .then(function(response){
+                        ctrl.nautritionGoals = new nautritionGoalsRange(response.data);
                         $http.get(`${consts.similarFoodApi}`)
-                            .then(function(response3){
-                                ctrl.FoodByMealType = response3.data;
+                            .then(function(response2){
+                                ctrl.FoodByMealType = response2.data;
                                 
                                 // The md-select directive eats keydown events for some quick select
                                 // logic. Since we have a search input here, we don't need that logic.
                                 $('.menuTable').find('input').on('keydown', function(ev) {
                                     ev.stopPropagation();
                                 });
-
+                                ctrl.loader = false;
                                 showAlert();
                         });
                 });        
@@ -31,7 +32,19 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
 
     ctrl.Finish = function() {
         userService.getUser().menu = ctrl.menu;
-        $location(Menu)
+        var menuHelper = {
+            UserID: userService.getUser().UserID, 
+            menu: ctrl.menu
+        };
+
+        $http.post(`${consts.insertApi}`, menuHelper)
+            .then(function({data}) {
+                $location.path("/main");
+        });
+    }
+
+    ctrl.Edit = function() {
+        ctrl.editable = !ctrl.editable;
     }
 
     function showAlert() {
@@ -48,6 +61,7 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
 
     ctrl.onChange = function() {
         ctrl.menu.MenuID = 0;
+        ctrl.clearSearchTerm();
 
         var TotalProtien = 0, TotalFats = 0, TotalCarbohydrates = 0, TotalCalories = 0;
 

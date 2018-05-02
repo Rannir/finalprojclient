@@ -3,10 +3,11 @@ controller('updateWeightController', function($scope, $location, $http, consts, 
     const ctrl = this;
     
     ctrl.update = function () {
-        const usr = userService.getUser();
-        usr.Measurement.Weight = ctrl.Weight;
-        $http.post(`${consts.insertOrUpdateUser}`, usr).then(function({data}) {
-            $location.path("/main");
+        userService.getUser(null, function(usr){
+            usr.Measurement.Weight = ctrl.Weight;
+            $http.post(`${consts.insertOrUpdateUser}`, usr).then(function({data}) {
+                $location.path("/main");
+            });
         });
     }
 

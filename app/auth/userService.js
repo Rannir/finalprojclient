@@ -3,9 +3,32 @@ service('userService', function($http, consts) {
     const srv = this;
     
     let user = null;
+    let userID = null;
 
-    srv.getUser = function() {
-        return user;
+    let menuHelper = null;
+
+    srv.setMenu = function(menu) {
+        menuHelper = menu;
+    }
+
+    srv.getMenu = function() {
+        return menuHelper;
+    }
+
+    srv.getUser = function(usrId, onDoneFunc) {
+        if(angular.isUndefinedOrNull(usrId)) {
+            getusr(userID, onDoneFunc);
+        }
+        else {
+            getusr(usrId, onDoneFunc);
+        }
+    }
+
+    const getusr = function(usrid, onDoneFunc) {
+        $http.get(`${consts.getUser}/${usrid}`).then(function({data}) {
+            userID = data.UserID;
+            onDoneFunc(data);
+        });
     }
 
     srv.login = function(props ,onDoneFunc) {
@@ -14,6 +37,7 @@ service('userService', function($http, consts) {
             $http.post(`${consts.loginApi}`, props).then(function({data}) {
                 console.log(data);
                 user = data;
+                userID = user.UserID;
                 onDoneFunc(data);
             });
         }

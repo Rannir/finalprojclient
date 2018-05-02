@@ -1,4 +1,4 @@
-angular.module('personalTrainer').controller('registerController', function($scope, $http,$location, consts, passwordValidation, toaster) {
+angular.module('personalTrainer').controller('registerController', function($scope, $http,$location, consts, passwordValidation, toaster, userService) {
     const ctrl = this;
 
     ctrl.model = {FirstName:"", LastName:"", Birthday:null, Height:null, Gender:null, Email:"", Password:"", confirmPassword:"",
@@ -81,7 +81,9 @@ angular.module('personalTrainer').controller('registerController', function($sco
         {
             ctrl.model.Goal.StartingWeight = ctrl.model.Measurement.Weight;
             $http.post(`${consts.registerApi}`, ctrl.model).then(function({data}) {
-                $location.path("/menu");
+                userService.getUser(data, function(usr){
+                    $location.path("/menu");
+                });
             });
         }
         else

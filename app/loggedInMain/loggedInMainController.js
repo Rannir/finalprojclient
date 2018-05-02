@@ -1,35 +1,39 @@
 angular.module('personalTrainer').
 controller('loggedInMainController', function($scope, $location, $http, consts, userService) {
     const ctrl = this;
-
-    ctrl.labels = ["Starting weight", "Current weight", "Goal weight"];
-    ctrl.data = [userService.getUser().Goal.StartingWeight, userService.getUser().Measurement.Weight, userService.getUser().Goal.GoalWeight];
-    ctrl.series = ['Goals'];
-
-    $http.get(`${consts.MeasurementsByUser}/${userService.getUser().UserID}`).then(function({data}){
-        dashydash.orderBy(data, ['CreationDate'], ['desc']);
-
-        if(data[0].Weight == userService.getUser().Goal.StartingWeight)
-            ctrl.data = dashydash.map(data, 'Weight');
-        else{
-            ctrl.data = dashydash.map(data, 'Weight');
-            ctrl.data.unshift(userService.getUser().Goal.StartingWeight);
-        }
-
-        ctrl.labels = [];
-        let i = 0;
-
-        dashydash.forEach(ctrl.data, function(value) {
-            ctrl.labels.push(`measurement ${i++}`);
+    
+    userService.getUser(null, function(usr){
+        ctrl.labels = ["Starting weight", "Current weight", "Goal weight"];
+        ctrl.data = [usr.Goal.StartingWeight, usr.Measurement.Weight, usr.Goal.GoalWeight];
+        ctrl.series = ['Goals'];
+    
+        $http.get(`${consts.MeasurementsByUser}/${usr.UserID}`).then(function({data}){
+            dashydash.orderBy(data, ['CreationDate'], ['desc']);
+    
+            if(data[0].Weight == usr.Goal.StartingWeight)
+                ctrl.data = dashydash.map(data, 'Weight');
+            else{
+                ctrl.data = dashydash.map(data, 'Weight');
+                ctrl.data.unshift(usr.Goal.StartingWeight);
+            }
+    
+            ctrl.labels = [];
+            let i = 0;
+    
+            dashydash.forEach(ctrl.data, function(value) {
+                ctrl.labels.push(`measurement ${i++}`);
+            });
+            
+            ctrl.labels[0] = "Starting weight";
+    
+            ctrl.labels[ctrl.data.length - 1] = "Current weight";
+            
+            ctrl.data.push(usr.Goal.GoalWeight);
+            ctrl.labels.push("Goal weight");
         });
-        
-        ctrl.labels[0] = ["Starting weight"];
-
-        ctrl.labels[ctrl.data.length - 1] = "Current weight";
-        
-        ctrl.data.push(userService.getUser().Goal.GoalWeight);
-        ctrl.labels.push("Goal weight");
     });
+
+
 
     ctrl.progress = function () {
         $location.path("/updateweight");
@@ -40,12 +44,13 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
     }
 
     ctrl.editMenu = function() {
-        var user = userService.getUser();
-        
-        $http.get(`${consts.menuApi}/` + user.Goal.MenuID)
-            .then(function(response){
-                user.menu = response.data;
-                $location.path("/editMenu");
+        userService.getUser(null, function(usr){
+
+            $http.get(`${consts.menuApi}/` + usr.Goal.MenuID)
+                .then(function(response){
+                    userService.setMenu(response.data);
+                    $location.path("/editMenu");
+            });
         });
     }
     

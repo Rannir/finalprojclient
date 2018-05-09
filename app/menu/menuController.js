@@ -5,13 +5,15 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     ctrl.menuIndex = 0;
 
     ctrl.load = function() {
-        ctrl.loader = true;
-        $http.get(`${consts.algApi}/${userService.getUser().UserID}`)
-            .then(function(response){
-                ctrl.menus = response.data;
-                ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
-                ctrl.loader = false;
-            });
+        userService.getUser(null, function(usr){
+            ctrl.loader = true;
+            $http.get(`${consts.algApi}/${usr.UserID}`)
+                .then(function(response){
+                    ctrl.menus = response.data;
+                    ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
+                    ctrl.loader = false;
+                });
+        });
     }
 
     ctrl.nextMenu = function() {
@@ -24,30 +26,32 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     }
 
     ctrl.chooseMenu = function() {
-        var value = {
-            UserId : userService.getUser().UserID,
-            Menu : ctrl.menus[ctrl.menuIndex]
-        }
-
-        var url;
-        if  (ctrl.menus[ctrl.menuIndex].MenuID != 0)
-        {
-            url= `${consts.insertApi}`;
-        }
-        else
-        {
-            url= `${consts.insertNewApi}`;
-        }
-
-        $http.post(url, value).then(function({data}) {
-           
+        userService.getUser(null, function(usr){
+            var value = {
+                UserId : usr.UserID,
+                Menu : ctrl.menus[ctrl.menuIndex]
+            }
+    
+            var url;
+            if  (ctrl.menus[ctrl.menuIndex].MenuID != 0)
+            {
+                url= `${consts.insertApi}`;
+            }
+            else
+            {
+                url= `${consts.insertNewApi}`;
+            }
+    
+            $http.post(url, value).then(function({data}) {
+               
+            });
         });
 
 
     }
 
     ctrl.editMenu = function() {
-        userService.getUser().menu = ctrl.menus[ctrl.menuIndex];
+        userService.setMenu(ctrl.menus[ctrl.menuIndex]);
         $location.path("/editMenu");
     }
     

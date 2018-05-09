@@ -6,6 +6,9 @@ const personalTrainer = angular.module('personalTrainer', ['toaster', 'ngResourc
 personalTrainer.config(['$routeProvider', ($routeProvider) => {
     $routeProvider.when('/',
     {
+        templateUrl: /*!*/ 'HTML/landing.html',
+    }).when('/login',
+    {
         templateUrl: /*!*/ 'HTML/loggedOutMain.html',
         controller: 'loggedOutMainController',
         controllerAs: 'ctrl'

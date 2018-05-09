@@ -1,7 +1,13 @@
-<div class="menuPage">
-    <section class="middleSection">
-        <div class="floatMenu">
-            <h2 class="MenuName">Menu {{ctrl.menuIndex +1}}</h2>
+<div class="menuPage container">
+        <section class="center-text">
+                <h2 class="cursive cursive-header">
+                  <span>Menu</span>
+                </h2>
+             
+              </section>
+    <section class="middleSection  extra-container">
+        <div>
+            <h2 class="MenuName center-text">Menu {{ctrl.menuIndex +1}}</h2>
             <md-progress-circular ng-show="ctrl.loader" md-diameter="80"></md-progress-circular>
             <table class="menuTable" ng-show="!ctrl.loader"> 
                 <tr>

@@ -47,6 +47,7 @@ const projectPaths = {
                  'app/*.js',
                  'app/**/*.js'],
     images: ['app/images/*'],
+    fonts: ['app/fonts/*'],
     externalCss: ['app/external-scripts/*.css'],
     styles: ['app/*.scss',
              'app/**/*.scss']
@@ -171,7 +172,7 @@ const fontsTask = function(isProd)
 {
     gulp.src(projectPaths.fonts)
         .on('error', gutil.log)
-        .pipe(createPath(isProd, '/css/fonts'));
+        .pipe(gulp.dest(createPath(isProd, '/css/fonts')));
 };
 
 const imageTask = function(isProd)

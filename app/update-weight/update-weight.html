@@ -1,11 +1,24 @@
-<div class='divupdateweight'>
-    <section class='sectioninput'>
-        <img class="weightGoal" src="css\images\front_icon_scales.png">
-        Lets see where we are at
-        <md-input-container>
+
+<div class="container">
+        <section class="center-text">
+                <h2 class="cursive cursive-header">
+                  <span>Update Weight</span>
+                </h2>
+             
+              </section>
+<section class="sectionReg extra-container">
+    <div class="center-text">
+            <img class="weightGoal" src="css\images\front_icon_scales.png">
+    </div>
+    Lets see where we are at
+
+    <md-input-container>
             <label>Weight</label>
             <input name="Weight" ng-model="ctrl.Weight" required type="number">
         </md-input-container>
+<div class="center-text">
         <md-button  type="submit" class="md-raised startMyJourneybtn" ng-click="ctrl.update()">update</md-button>
-    </section>
-</div> 
+</div>
+
+</section>
+</div>

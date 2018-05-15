@@ -3,7 +3,16 @@
 const personalTrainer = angular.module('personalTrainer', ['toaster', 'ngResource', 'ngRoute', 'ngAnimate', 'angularSpinner', 'ngMaterial', 'chart.js']);
 
 
-personalTrainer.config(['$routeProvider', ($routeProvider) => {
+personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $httpProvider) => {
+
+    $httpProvider.interceptors.push(['$injector', function($injector){
+        return {
+            response: function(response) {
+              $injector.get('userService').cacheUserFunc();
+              return response;
+            }}
+    }])
+    
     $routeProvider.when('/',
     {
         templateUrl: /*!*/ 'HTML/landing.html',
@@ -48,6 +57,27 @@ personalTrainer.config(['$routeProvider', ($routeProvider) => {
         controllerAs: 'ctrl'
     })
 }]);
+
+// personalTrainer.factory("userPersistenceService", [
+// 	"$cookies", function($cookies) {
+// 		var user = "";
+ 
+// 		return {
+// 			setCookieData: function(user) {
+// 				user = user;
+// 				$cookies.put("user", user);
+// 			},
+// 			getCookieData: function() {
+// 				user = $cookies.get("user");
+// 				return user;
+// 			},
+// 			clearCookieData: function() {
+// 				user = "";
+// 				$cookies.remove("user");
+// 			}
+// 		}
+// 	}
+// ]);
 
 personalTrainer.config = {
     capabilities: {

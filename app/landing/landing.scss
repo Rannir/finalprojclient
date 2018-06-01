@@ -1,4 +1,3 @@
-$break:600px;
 .sideBackground{
     height: 50%;
     width: 40%;
@@ -49,64 +48,109 @@ button{
     top: 85%;
 }
 
-@media screen and (max-width: 370px){
-    .cursive-header{
-    font-size: 25px;
-    }
-}
-@media screen and (max-width: 570px){
-    .cursive-header{
-    font-size: 34px;}
-}
-@media screen and (max-width: 740px){.cursive-header{
-    font-size: 43px;}
-}
-@media screen and (max-width: 960px){.cursive-header{
-    font-size: 52px;}
-}
-@media screen and (max-width: 1280px){.cursive-header{
-    font-size: 61px;}
-}
-@media screen and (max-width: 1920px){.cursive-header{
-    font-size: 70px;}
-}
-
 .cursive-header{
-
+    @media screen and (max-width: $wide){
+        font-size: 70px;
+        height: 200px;
+    }
+    @media screen and (max-width: $wideToMedium){
+        font-size: 61px;
+        height: 186px;
+    }
+    @media screen and (max-width: $medium){
+        font-size: 52px;
+        height: 172px;
+    }
+    @media screen and (max-width: $small){
+        font-size: 40px;
+        height: 158px;
+    }
+    @media screen and (max-width: $narrow){
+        font-size: 27px;
+        height: 144px;
+    }
+    @media screen and (max-width: $smallest){
+        font-size: 23px;
+        height: 130px;
+    }
     color: white;
     position: relative;
     display: block;
     padding-top: 15px;
     margin: 0;
-    height: 200px;
+   
+
     .leftsize{
         position: relative;
-        left: 115px;
+        width: 100%;
+        display: flex;
+         
+        @media screen and (max-width: $wide){
+            left: 80px; 
+        }
+	    @media screen and (max-width: $wideToMedium){
+            left: 65px; 
+        }
+	    @media screen and (max-width: $medium){
+            left: 30px; 
+        }
+ 	    @media screen and (max-width: $small){
+            left: px; 
+        }
+        @media screen and (max-width: $narrow){
+            left: px; 
+        }
+	    @media screen and (max-width: $smallest){
+            left: px; 
+        }
     }
     .rightsize{
-        position: relative;
-        top: 90px;
-        right: 105px;
+        position: relative;  
+        width: 100%;
+        display: flex;
+         
+        @media screen and (max-width: $wide){
+            top: 20px;
+            left: 265px; 
+        }
+	    @media screen and (max-width: $wideToMedium){
+            top: 20px;
+            left: 140px;
+        }
+	    @media screen and (max-width: $medium){
+            top: 30px;
+            left: 55px;
+        }
+ 	    @media screen and (max-width: $small){
+            top: 44px;
+            left: 23px;
+        }
+        @media screen and (max-width: $narrow){
+            top: 54px;
+        }
+	    @media screen and (max-width: $smallest){
+            top: 45px;
+        }
     }
 }
 .mainP{
-    @media screen and (max-width: $smallest){
-        font-size: 15px;
-    }
-    @media screen and (max-width: $narrow){
-        font-size: 17px;
-    }
-    @media screen and (max-width: $small){
-        font-size: 19px;
-    }
-    @media screen and (max-width: $medium){
-        font-size: 21px;
+    @media screen and (max-width: $wide){
+        font-size: 25px;
     }
     @media screen and (max-width: $wideToMedium){
         font-size: 23px;
     }
-    @media screen and (max-width: $wide){
-        font-size: 25px;
+    @media screen and (max-width: $medium){
+        font-size: 21px;
+    }
+    @media screen and (max-width: $small){
+        font-size: 19px;
+    }
+    @media screen and (max-width: $narrow){
+        font-size: 17px;
+    }
+    @media screen and (max-width: $smallest){
+        font-size: 13px;
     }
     color: white;
     font-weight: lighter;
@@ -114,97 +158,89 @@ button{
     margin: 0 auto;
 }
 
-$smallest: 390px;
-$narrow: 570px;
-$small: 740px;
-$medium:960px;
-$wideToMedium:1280px;
-$wide: 1920px;
-
 .circles{
     li{
         display: inline-table;
         overflow: hidden;
-        @media screen and (max-width: $smallest){
-            margin: 5px 5px;
-        }
-        @media screen and (max-width: $narrow){
-            margin: 14px 14px;
-        }
-        @media screen and (max-width: $small){
-            margin: 23px 23px;
-        }
-        @media screen and (max-width: $medium){
-            margin: 32px 32px;
+        @media screen and (max-width: $wide){
+            margin: 50px 50px;
         }
         @media screen and (max-width: $wideToMedium){
             margin: 41px 41px;
         }
-        @media screen and (max-width: $wide){
-            margin: 50px 50px;
+        @media screen and (max-width: $medium){
+            margin: 32px 32px;
+        }
+        @media screen and (max-width: $small){
+            margin: 14px 14px;
+        }
+        @media screen and (max-width: $narrow){
+            margin: 5px 5px;
+        }
+        @media screen and (max-width: $smallest){
+            margin: 5px 5px;
         }
         text-align: center;
 
         span{
-            @media screen and (max-width: $smallest){
-                max-width: 105px;
-                font-size: 10px;
-                margin-top: 15px;
-            }
-            @media screen and (max-width: $narrow){
-                max-width: 132px;
-                font-size: 12px;
-                margin-top: 16px;
-            }
-            @media screen and (max-width: $small){
-                max-width: 159px;
-                font-size: 13px;
-                margin-top: 17px;
-            }
-            @media screen and (max-width: $medium){
-                max-width: 186px;
-                font-size: 14px;
-                margin-top: 18px;
+            @media screen and (max-width: $wide){
+                max-width: 240px;
+                font-size: 16px;
+                margin-top: 20px;
             }
             @media screen and (max-width: $wideToMedium){
                 max-width: 213px;
                 font-size: 15px;
                 margin-top: 19px;
             }
-            @media screen and (max-width: $wide){
-                max-width: 240px;
-                font-size: 16px;
-                margin-top: 20px;
+            @media screen and (max-width: $medium){
+                max-width: 186px;
+                font-size: 14px;
+                margin-top: 18px;
+            }
+            @media screen and (max-width: $small){
+                max-width: 159px;
+                font-size: 13px;
+                margin-top: 17px;
+            }
+            @media screen and (max-width: $narrow){
+                max-width: 105px;
+                font-size: 12px;
+                margin-top: 16px;
+            }
+            @media screen and (max-width: $smallest){
+                max-width: 85px;
+                font-size: 10px;
+                margin-top: 15px;
             }
             display: flex;
             color: white;
             font-weight: lighter;
         }
         img{
-            @media screen and (max-width: $smallest){
-                width: 35px;
-                height: 35px;
+            @media screen and (max-width: $wide){
+                width: 100px;
+                height: 100px;
+            }
+            @media screen and (max-width: $wideToMedium){
+                width: 87px;
+                height: 87px;
+            }
+            @media screen and (max-width: $medium){
+                width: 74px;
+                height: 74px;
+            }
+            @media screen and (max-width: $small){
+                width: 61px;
+                height: 61px;
             }
             @media screen and (max-width: $narrow){
                 width: 35px;
                 height: 35px;
             }
-            @media screen and (max-width: $small){
-                width: 35px;
-                height: 35px;
-            }
-            @media screen and (max-width: $medium){
-                width: 35px;
-                height: 35px;
-            }
-            @media screen and (max-width: $wideToMedium){
-                width: 35px;
-                height: 35px;
-            }
-            @media screen and (max-width: $wide){
-                width: 100px;
-                height: 100px;
-                
+            @media screen and (max-width: $smallest){
+                width: 28px;
+                height: 28px;
             }
             position: relative;
             padding: 20px;

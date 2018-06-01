@@ -16,6 +16,7 @@ personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $htt
     $routeProvider.when('/',
     {
         templateUrl: /*!*/ 'HTML/landing.html',
+        
     }).when('/login',
     {
         templateUrl: /*!*/ 'HTML/loggedOutMain.html',

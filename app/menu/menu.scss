@@ -4,13 +4,6 @@
     }
 }
 
-.middleSection {
-    background: rgba(255,255,255,0.7);
-    padding: 20px;
-    position: relative;
-    border-radius: 4px;
-}
-
 .floatMenu {
     background-color: white;
     color: #757575;
@@ -20,6 +13,13 @@
     td {
         padding-bottom: 7.5px;
     }
+}
+
+.middleSectionMenu{
+    background: rgba(255,255,255,0);
+    padding: 20px;
+    position: relative;
+    border-radius: 4px;
 }
 
 .menuTable {

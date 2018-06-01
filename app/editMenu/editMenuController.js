@@ -39,11 +39,16 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                 UserID: usr.UserID, 
                 menu: ctrl.menu
             };
-    
-            $http.post(`${consts.insertApi}`, menuHelper)
-                .then(function({data}) {
-                    $location.path("/main");
-            });
+
+            if(ctrl.menu.MenuID == 0){
+                $location.path("/main");                
+            }
+            else{
+                $http.post(`${consts.insertApi}`, menuHelper)
+                    .then(function({data}) {
+                        $location.path("/main");
+                });
+            }
         });
     }
 

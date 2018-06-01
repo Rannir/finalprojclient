@@ -41,6 +41,9 @@ service('userService', function($http, consts) {
 
     srv.logout = function() {
         window.localStorage.removeItem('user');
+        user = null;
+        userID = null;
+        menuHelper = null;
     }
 
     srv.login = function(props ,onDoneFunc) {

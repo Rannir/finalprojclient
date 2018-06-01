@@ -67,7 +67,7 @@
       
               <a class="logo">FitEat</a>
 
-              <section  ng-show="hasLogged()">
+              <section  ng-if="hasLogged()">
                 <md-button  ng-href="#/updateweight">Update Weight</md-button>
                 <md-button  ng-href="#/updategoal">Update Goal</md-button>
                 <md-button  ng-href="#/main">Statistics</md-button>
@@ -75,8 +75,8 @@
               </section>
 
               <div flex></div>
-              <md-button ng-show="!hasLogged()" ng-href="#/login">Login</md-button>
-              <a class="md-button md-ink-ripple" ng-show="hasLogged()" ng-click="logout()">Log Out</a>
+              <md-button ng-if="!hasLogged()" ng-href="#/login">Login</md-button>
+              <a class="md-button md-ink-ripple" ng-if="hasLogged()" ng-click="logout()">Log Out</a>
             </div>
           </md-toolbar>
        

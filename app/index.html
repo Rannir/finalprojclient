@@ -16,18 +16,18 @@
                   <img src="css\images\Logo.jpg" class="logo-image"> 
               </md-button>
       
-              <md-button class="logo" >FitEat</md-button>
+              <a class="logo">FitEat</a>
 
-              <section ng-show="$scope.hasLogged">
+              <section  ng-show="hasLogged()">
                 <md-button  ng-href="#/updateweight">Update Weight</md-button>
                 <md-button  ng-href="#/updategoal">Update Goal</md-button>
                 <md-button  ng-href="#/main">Statistics</md-button>
+                <a class="md-button md-ink-ripple" ng-click="editMenu()">View Menu</a>
               </section>
 
               <div flex></div>
-              <md-button ng-show="!$scope.hasLogged" ng-href="#/login">Login</md-button>
-              <md-button  ng-click="logout()">Log Out</md-button>
-              <!-- ng-show="$scope.hasLogged" -->
+              <md-button ng-show="!hasLogged()" ng-href="#/login">Login</md-button>
+              <a class="md-button md-ink-ripple" ng-show="hasLogged()" ng-click="logout()">Log Out</a>
             </div>
           </md-toolbar>
        

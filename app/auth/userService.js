@@ -19,9 +19,13 @@ service('userService', function($http, consts) {
         return menuHelper;
     }
 
+    srv.hasLogged = function() {
+        return (user != null)?true: false;
+    }
+
     srv.getUser = function(usrId, onDoneFunc) {
         if(angular.isUndefinedOrNull(usrId)) {
-            getusr(userID, onDoneFunc);
+            onDoneFunc(user);
         }
         else {
             getusr(usrId, onDoneFunc);
@@ -36,15 +40,12 @@ service('userService', function($http, consts) {
     }
 
     srv.logout = function() {
-       // $scope.hasLogged = false;
         window.localStorage.removeItem('user');
     }
 
     srv.login = function(props ,onDoneFunc) {
-        // var cacheUser = JSON.parse(window.localStorage.getItem("user"));
         if(angular.isUndefinedOrNull(user)) {
             srv.logout();
-           // if (cacheUser == null){
                 console.log('login user');
                 $http.post(`${consts.loginApi}`, props).then(function({data}) {
                     console.log(data);
@@ -54,17 +55,10 @@ service('userService', function($http, consts) {
                     }
                     (user != null)?userID = user.UserID:0;
                     onDoneFunc(data);
-                    $scope.hasLogged = true;
                 });
-            // }
-            // else{
-            //     user = cacheUser;
-            //     (user != null)?userID = user.UserID:0;
-            // }
 
         }
         else {
-            $scope.hasLogged = true;
             console.log('we have the user here!')
             onDoneFunc(user);
         }

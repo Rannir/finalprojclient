@@ -7,23 +7,30 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     ctrl.load = function() {
         userService.getUser(null, function(usr){
             ctrl.menu = userService.getMenu();
-            ctrl.loader = true;
-            $http.get(`${consts.nautritionGoalsApi}/`+ usr.UserID)
-                        .then(function(response){
-                            ctrl.nautritionGoals = new nautritionGoalsRange(response.data);
-                            $http.get(`${consts.similarFoodApi}`)
-                                .then(function(response2){
-                                    ctrl.FoodByMealType = response2.data;
-                                    
-                                    // The md-select directive eats keydown events for some quick select
-                                    // logic. Since we have a search input here, we don't need that logic.
-                                    $('.menuTable').find('input').on('keydown', function(ev) {
-                                        ev.stopPropagation();
-                                    });
-                                    ctrl.loader = false;
-                                    showAlert();
-                            });
-                    }); 
+
+            if(angular.isUndefinedOrNull(ctrl.menu)) {
+                $location.path("/main");
+            }
+            else {
+
+                ctrl.loader = true;
+                $http.get(`${consts.nautritionGoalsApi}/`+ usr.UserID)
+                            .then(function(response){
+                                ctrl.nautritionGoals = new nautritionGoalsRange(response.data);
+                                $http.get(`${consts.similarFoodApi}`)
+                                    .then(function(response2){
+                                        ctrl.FoodByMealType = response2.data;
+                                        
+                                        // The md-select directive eats keydown events for some quick select
+                                        // logic. Since we have a search input here, we don't need that logic.
+                                        $('.menuTable').find('input').on('keydown', function(ev) {
+                                            ev.stopPropagation();
+                                        });
+                                        ctrl.loader = false;
+                                        showAlert();
+                                });
+                        }); 
+                }
         });       
     }
 

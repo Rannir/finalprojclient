@@ -14,6 +14,7 @@ constant('consts', {
     insertNewApi: `${serverUrl}/api/menu/InsertNew`,
     insertApi: `${serverUrl}/api/menu/Insert`,
     MeasurementsByUser: `${serverUrl}/api/measurement/GetMeasurementsByUser`,
+    GetGoalsByUserId: `${serverUrl}/api/Goal/GetGoalsByUserId`,
     getUser: `${serverUrl}/api/user/user`,
     maxMenu: 4,
     minMenu:0

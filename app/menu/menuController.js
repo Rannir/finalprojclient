@@ -51,8 +51,18 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     }
 
     ctrl.editMenu = function() {
-        userService.setMenu(ctrl.menus[ctrl.menuIndex]);
-        $location.path("/editMenu");
+        userService.getUser(null, function(usr){
+            usr.menu = ctrl.menus[ctrl.menuIndex];
+            var menuHelper = {
+                UserID: usr.UserID, 
+                menu: ctrl.menus[ctrl.menuIndex]
+            };
+
+            $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
+                userService.setMenu(ctrl.menus[ctrl.menuIndex]);
+                $location.path("/editMenu");
+            });
+        });
     }
     
     ctrl.load();

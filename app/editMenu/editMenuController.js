@@ -33,23 +33,22 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
       
 
     ctrl.Finish = function() {
-        userService.getUser(null, function(usr){
-            usr.menu = ctrl.menu;
-            var menuHelper = {
-                UserID: usr.UserID, 
-                menu: ctrl.menu
-            };
-
-            if(ctrl.menu.MenuID == 0){
-                $location.path("/main");                
-            }
-            else{
-                $http.post(`${consts.insertApi}`, menuHelper)
-                    .then(function({data}) {
-                        $location.path("/main");
+        if(ctrl.editable) {
+            userService.getUser(null, function(usr){
+                usr.menu = ctrl.menu;
+                var menuHelper = {
+                    UserID: usr.UserID, 
+                    menu: ctrl.menu
+                };
+    
+                $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
+                    $location.path("/main");
                 });
-            }
-        });
+            });
+        }
+        else {
+            $location.path("/main");
+        }
     }
 
     ctrl.Edit = function() {

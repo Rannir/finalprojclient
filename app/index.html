@@ -10,6 +10,55 @@
         <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
         
 
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#">Navbar</a>
+        
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+        
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ng-href="#/updateweight">Update Weight</a>
+                        <md-button  ng-href="#/updateweight">Update Weight</md-button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+        
+                    
+        
+                </ul>
+                <!-- Links -->
+        
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                            <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a ng-show="!hasLogged()" class="nav-link" ng-href="#/login">Login</a>
+                            <a class="md-button md-ink-ripple" ng-show="hasLogged()" ng-click="logout()">Log Out</a>
+                        </li>
+                    </ul>
+                    </div>
+                </form>
+            </div>
+            <!-- Collapsible content -->
+        
+        </nav>
+
        <md-toolbar class="nav-bar">
             <div class="md-toolbar-tools">
               <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
@@ -41,4 +90,24 @@
     <link rel="stylesheet" type="text/css" href="css/animations.css"/>
     <link rel="stylesheet" type="text/css" href="css/toaster.css"/>
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+    
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+            
 </html>

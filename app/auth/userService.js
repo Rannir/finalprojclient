@@ -39,6 +39,7 @@ service('userService', function($http, consts) {
                 user = data;
                 userID = user.UserID;
                 onDoneFunc(data);
+                $scope.hasLogged = true;
             });
         }
         else {

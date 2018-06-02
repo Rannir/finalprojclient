@@ -53,6 +53,18 @@ personalTrainer.config(['$routeProvider', '$httpProvider', '$locationProvider', 
         controller: 'updateWeightController',
         controllerAs: 'ctrl'
     })
+    .when('/goalstats',
+    {
+        templateUrl: /*!*/ 'HTML/goal-stats.html',
+        controller: 'goalStatsController',
+        controllerAs: 'ctrl'
+    })
+    .when('/progstats',
+    {
+        templateUrl: /*!*/ 'HTML/prog-stats.html',
+        controller: 'progStatsController',
+        controllerAs: 'ctrl'
+    })
     .when('/updategoal',
     {
         templateUrl: /*!*/ 'HTML/update-goal.html',

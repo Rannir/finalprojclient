@@ -10,10 +10,10 @@
         <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
         
 
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+        <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#/"><img src="css\images\Logo.jpg" class="logo-image"><a class="logo">FitEat</a></a>
         
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -26,19 +26,20 @@
         
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" ng-href="#/updateweight">Update Weight</a>
-                        <md-button  ng-href="#/updateweight">Update Weight</md-button>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-        
+                    <section  ng-if="hasLogged()">
+                        <li class="nav-item">
+                            <a class="nav-link" ng-href="#/updateweight">Update Weight</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ng-href="#/updategoal">Update Goal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  ng-href="#/main">Statistics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  ng-click="editMenu()">View Menu</a>
+                        </li>
+                    </section>
                     
         
                 </ul>
@@ -59,7 +60,7 @@
         
         </nav>
 
-       <md-toolbar class="nav-bar">
+       <!--<md-toolbar class="nav-bar">
             <div class="md-toolbar-tools">
               <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
                   <img src="css\images\Logo.jpg" class="logo-image"> 
@@ -78,7 +79,7 @@
               <md-button ng-if="!hasLogged()" ng-href="#/login">Login</md-button>
               <a class="md-button md-ink-ripple" ng-if="hasLogged()" ng-click="logout()">Log Out</a>
             </div>
-          </md-toolbar>
+          </md-toolbar>-->
        
         <div  ng-view >
             

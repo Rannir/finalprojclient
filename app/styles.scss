@@ -116,13 +116,19 @@ md-input-container {
 .logo {
     font-family: 'Lobster', cursive;
     font-size: 35px !important;
+    color: white !important;
+    margin-left: 35px !important;
 }
 .logo-image{
-    width: 40px;
-    height: 48px;
+    height: 60px;
     position: absolute;
-    top: 0;
+    top: 15px;
     left: 0;
+    margin: 0 6px;
+    min-width: 0;
+    line-height: 24px;
+    padding: 8px;
+    border-radius: 50%;
 }
 md-toolbar {
     a {

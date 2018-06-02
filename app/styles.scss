@@ -41,7 +41,7 @@ $tomobile: 1059px;
 }
 
 .view {
-    background: url(../css/images/mt-1002-home-bg.jpg) no-repeat center center;
+    background: url(../css/images/back4.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -69,6 +69,10 @@ html,body{
     width: 50%;
     display: block;
     margin: 0 auto;
+
+    @media screen and (max-width: $tomobile){
+        width: 75%;
+    }
 }
 md-input-container {
     display: block;
@@ -172,4 +176,10 @@ md-toolbar {
     li:last-child {
         border:none;
     }
+}
+
+
+.autoSize {
+    width: 100%;
+    height: auto;
 }

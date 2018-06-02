@@ -51,6 +51,18 @@ personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $htt
         controller: 'updateWeightController',
         controllerAs: 'ctrl'
     })
+    .when('/goalstats',
+    {
+        templateUrl: /*!*/ 'HTML/goal-stats.html',
+        controller: 'goalStatsController',
+        controllerAs: 'ctrl'
+    })
+    .when('/progstats',
+    {
+        templateUrl: /*!*/ 'HTML/prog-stats.html',
+        controller: 'progStatsController',
+        controllerAs: 'ctrl'
+    })
     .when('/updategoal',
     {
         templateUrl: /*!*/ 'HTML/update-goal.html',
@@ -58,7 +70,23 @@ personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $htt
         controllerAs: 'ctrl'
     })
 }]);
-
+personalTrainer.run( function($rootScope, userService, $location) {
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        if (!userService.hasLogged() &&  next.templateUrl.indexOf("loggedOutMain") > -1) {
+                $location.path( "/login" );
+        }
+        else if (!userService.hasLogged() &&  next.templateUrl.indexOf("register") > -1) {
+            $location.path( "/register" );
+        }
+        else if (!userService.hasLogged() &&  !(next.templateUrl.indexOf("landing") > -1)) {
+            $location.path( "/" );
+        }
+        else if (userService.hasLogged() && 
+         (next.templateUrl.indexOf("loggedOutMain") > -1 || next.templateUrl.indexOf("register") > -1)) {
+            $location.path( "/main" );
+        }    
+    });
+ })
 // personalTrainer.factory("userPersistenceService", [
 // 	"$cookies", function($cookies) {
 // 		var user = "";

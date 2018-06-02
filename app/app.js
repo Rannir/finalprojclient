@@ -3,7 +3,7 @@
 const personalTrainer = angular.module('personalTrainer', ['toaster', 'ngResource', 'ngRoute', 'ngAnimate', 'angularSpinner', 'ngMaterial', 'chart.js']);
 
 
-personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $httpProvider) => {
+personalTrainer.config(['$routeProvider', '$httpProvider', '$locationProvider', ($routeProvider, $httpProvider, $locationProvider) => {
 
     $httpProvider.interceptors.push(['$injector', function($injector){
         return {
@@ -12,6 +12,8 @@ personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $htt
               return response;
             }}
     }])
+
+    $locationProvider.hashPrefix('');
     
     $routeProvider.when('/',
     {
@@ -60,41 +62,43 @@ personalTrainer.config(['$routeProvider', '$httpProvider', ($routeProvider, $htt
 }]);
 personalTrainer.run( function($rootScope, userService, $location) {
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        if (!userService.hasLogged() &&  next.templateUrl.indexOf("loggedOutMain") > -1) {
-                $location.path( "/login" );
-        }
-        else if (!userService.hasLogged() &&  next.templateUrl.indexOf("register") > -1) {
-            $location.path( "/register" );
-        }
-        else if (!userService.hasLogged() &&  !(next.templateUrl.indexOf("landing") > -1)) {
-            $location.path( "/" );
-        }
-        else if (userService.hasLogged() && 
-         (next.templateUrl.indexOf("loggedOutMain") > -1 || next.templateUrl.indexOf("register") > -1)) {
-            $location.path( "/main" );
-        }    
+        if(next.templateUrl){
+            if (!userService.hasLogged() &&   next.templateUrl.indexOf("loggedOutMain") > -1) {
+                    $location.path( "/login" );
+            }
+            else if (!userService.hasLogged() &&  next.templateUrl.indexOf("register") > -1) {
+                $location.path( "/register" );
+            }
+            else if (!userService.hasLogged() &&  !(next.templateUrl.indexOf("landing") > -1)) {
+                $location.path( "/" );
+            }
+            else if (userService.hasLogged() && 
+            (next.templateUrl.indexOf("loggedOutMain") > -1 || next.templateUrl.indexOf("register") > -1)) {
+                $location.path( "/main" );
+            }  
+        }  
     });
  })
-// personalTrainer.factory("userPersistenceService", [
-// 	"$cookies", function($cookies) {
-// 		var user = "";
+personalTrainer.factory("userPersistenceService", [
+	"$cookies", function($cookies) {
+		var user = "";
  
-// 		return {
-// 			setCookieData: function(user) {
-// 				user = user;
-// 				$cookies.put("user", user);
-// 			},
-// 			getCookieData: function() {
-// 				user = $cookies.get("user");
-// 				return user;
-// 			},
-// 			clearCookieData: function() {
-// 				user = "";
-// 				$cookies.remove("user");
-// 			}
-// 		}
-// 	}
-// ]);
+		return {
+			setCookieData: function(user) {
+				user = user;
+				$cookies.put("user", user);
+			},
+			getCookieData: function() {
+				user = $cookies.get("user");
+				return user;
+			},
+			clearCookieData: function() {
+				user = "";
+				$cookies.remove("user");
+			}
+		}
+	}
+]);
 
 personalTrainer.config = {
     capabilities: {

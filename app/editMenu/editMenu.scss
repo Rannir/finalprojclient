@@ -16,6 +16,16 @@ md-progress-circular {
     margin: auto;
 }
 
+.remove-food-button{
+    border: none !important;
+    width: 30px;
+    min-width: 20px !important;
+}
+
+.md-select-value > span:not(.md-select-icon) {
+    padding-left: 32px;
+}
+
 .selectdemoSelectHeader {
     /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ 
 }

@@ -3,6 +3,7 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     const ctrl = this;
     ctrl.exceedProteins = ctrl.exceedFats = ctrl.exceedCarbohydrates = ctrl.exceedCalories = false;
     ctrl.editable = false;
+    ctrl.Amount = [1,2,3,4,5];
 
     ctrl.load = function() {
         userService.getUser(null, function(usr){
@@ -58,27 +59,67 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     }
 
     function distinctMenuItems() {
-        var newMenu = {
+        ctrl.CountedMenu = {
             Breakfast : [],
             Lunch : [],
             Dinner : []
         };
 
-        newMenu.Breakfast = dashydash.uniqBy(ctrl.menu.Breakfast, 'FoodID');
-        newMenu.Lunch = dashydash.uniqBy(ctrl.menu.Lunch, 'FoodID');
-        newMenu.Dinner = dashydash.uniqBy(ctrl.menu.Dinner, 'FoodID');
+        ctrl.CountedMenu.Breakfast = dashydash.uniqBy(ctrl.menu.Breakfast, 'FoodID');
+        ctrl.CountedMenu.Lunch = dashydash.uniqBy(ctrl.menu.Lunch, 'FoodID');
+        ctrl.CountedMenu.Dinner = dashydash.uniqBy(ctrl.menu.Dinner, 'FoodID');
         
-        for (const prop in newMenu) {
-            for (const i in newMenu[prop]) {
-                newMenu[prop][i].count = dashydash.filter(ctrl.menu[prop], ['FoodID', newMenu[prop][i].FoodID]).length;       
+        for (const mealType in ctrl.CountedMenu) {
+            for (const i in ctrl.CountedMenu[mealType]) {
+                ctrl.CountedMenu[mealType][i].Count = dashydash.filter(ctrl.menu[mealType], ['FoodID', ctrl.CountedMenu[mealType][i].FoodID]).length;       
+            }
+            dashydash.sortBy(ctrl.CountedMenu[mealType], ['FoodID']);
+        }
+
+        ctrl.DistinctMenu = angular.copy(ctrl.CountedMenu);        
+    }
+
+     ctrl.getSelectedFoodText = function(food, mealType) {
+        if (!ctrl.editable) {
+            return food.Name + " (" + food.Grams * dashydash.find(ctrl.CountedMenu[mealType], ['FoodID', food.FoodID]).Count + " g.)";
+        }
+        else {
+            return food.Name;
+        }
+    }
+
+    ctrl.onChangeAmount = function(food, mealType) {
+        updateMenuInfo();
+        var foodAppearance = dashydash.filter(ctrl.menu[mealType], ['FoodID', food.FoodID]).length;
+
+        if (foodAppearance > food.Count) {
+            dashydash.remove(ctrl.menu[mealType], {'FoodID' : food.FoodID});
+
+            for (let i = 0; i < food.Count; i++) {
+                ctrl.menu[mealType].push(angular.copy(food));
+            }
+        }
+        else {
+            for (let i = 0; i < (food.Count - foodAppearance); i++) {
+                ctrl.menu[mealType].push(angular.copy(food));
             }
         }
 
-        ctrl.CountedMenu = newMenu;
+        dashydash.sortBy(ctrl.menu[mealType], ['FoodID']);
+    }
+
+    ctrl.removeFoodFromMealType = function(index, mealType){
+        updateMenuInfo();
+        var food = ctrl.DistinctMenu[mealType][index];
+
+        dashydash.remove(ctrl.menu[mealType], {'FoodID' : food.FoodID});
+        dashydash.remove(ctrl.DistinctMenu[mealType], {'FoodID' : food.FoodID});
+        dashydash.remove(ctrl.CountedMenu[mealType], {'FoodID' : food.FoodID});
     }
 
     ctrl.Edit = function() {
         ctrl.editable = !ctrl.editable;
+        ctrl.DistinctMenu = angular.copy(ctrl.DistinctMenu);
     }
 
     function showAlert() {
@@ -93,10 +134,28 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
         );
       };
 
-    ctrl.onChange = function() {
+    function updateMenuInfo() {
         ctrl.menu.MenuID = 0;
-        ctrl.clearSearchTerm();
+        calculateNautritionGoals();
+    }
 
+    ctrl.onChangeFood = function(oldFood, newFood, index, mealType) {
+        if (oldFood.FoodID != newFood.FoodID) {           
+            ctrl.clearSearchTerm();
+            
+            var indexOldFood = dashydash.findIndex(ctrl.menu[mealType], ['FoodID', oldFood.FoodID]);
+            while (indexOldFood != -1) {
+                ctrl.menu[mealType][indexOldFood] = angular.copy(newFood);
+
+                indexOldFood = dashydash.findIndex(ctrl.menu[mealType], ['FoodID', oldFood.FoodID]);
+            }
+
+            newFood.Count = ctrl.CountedMenu[mealType][index].Count;
+            ctrl.CountedMenu[mealType][index] = angular.copy(newFood);            
+        }
+    }
+
+    function calculateNautritionGoals() {
         var TotalProtien = 0, TotalFats = 0, TotalCarbohydrates = 0, TotalCalories = 0;
 
         for (const index in ctrl.menu.Breakfast) {

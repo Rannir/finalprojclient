@@ -35,6 +35,10 @@ service('userService', function($http, consts) {
     const getusr = function(usrid, onDoneFunc) {
         $http.get(`${consts.getUser}/${usrid}`).then(function({data}) {
             userID = data.UserID;
+            user = data;
+            if (user != null){                      
+                window.localStorage.setItem("user", JSON.stringify(user));
+            }
             onDoneFunc(data);
         });
     }

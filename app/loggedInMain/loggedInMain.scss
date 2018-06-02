@@ -25,12 +25,8 @@
     margin-top: 22px;
     margin-bottom: 5px;
     width: 100%;
-    @media screen and (max-width: $wide){
-        display: flex;
-    }
-    @media screen and (max-width: $narrow){
-        display: block;
-    }
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
 }
 
 .divGraps{
@@ -53,15 +49,11 @@
 
 .grap{
     @media screen and (max-width: $wide){
-        width: 50% !important;
-        height: 50% !important;
-    }
-    @media screen and (max-width: $small){
-        width: 50% !important;
-        height: 58% !important;
+        width: 100% !important;
+        height: 100% !important;
     }
     @media screen and (max-width: $narrow){
-        width: 85% !important;
-        height: 34% !important;
+        width: 100% !important;
+        height: 70% !important;
     }
 }

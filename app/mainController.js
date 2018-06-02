@@ -9,14 +9,24 @@ angular.module('personalTrainer').controller('mainController', function($scope, 
         return userService.hasLogged();
     }
 
+    $scope.createMenu = function () {
+        $location.path("/menu");
+    }
+
+
     $scope.editMenu = function() {
         userService.getUser(null, function(usr){
 
-            $http.get(`${consts.menuApi}/` + usr.Goal.MenuID)
-                .then(function(response){
-                    userService.setMenu(response.data);
-                    $location.path("/editMenu");
-            });
+            if(angular.isUndefinedOrNull(usr.Goal.MenuID)) {
+                $location.path("/menu");
+            }
+            else {
+                $http.get(`${consts.menuApi}/` + usr.Goal.MenuID)
+                    .then(function(response){
+                        userService.setMenu(response.data);
+                        $location.path("/editMenu");
+                });
+            }
         });
     }
 });

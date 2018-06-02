@@ -5,6 +5,18 @@ service('userService', function($http, consts) {
     let user = null;
     let userID = null;
     let menuHelper = null;
+    
+    srv.updateGoalCache = function(goal){
+        window.localStorage.removeItem('user');
+        user.Goal = goal;
+        window.localStorage.setItem("user", JSON.stringify(user));
+    }
+
+    srv.updateMeasurementCache = function(measurement){
+        window.localStorage.removeItem('user');
+        user.Measurement = measurement;
+        window.localStorage.setItem("user", JSON.stringify(user));
+    }
 
     srv.cacheUserFunc = function(){
         user = JSON.parse(window.localStorage.getItem("user"));
@@ -12,14 +24,16 @@ service('userService', function($http, consts) {
     }
 
     srv.setMenu = function(menu) {
-        menuHelper = menu;
+        window.localStorage.setItem("menuHelper", JSON.stringify(menu));
     }
 
     srv.getMenu = function() {
-        return menuHelper;
+        return  JSON.parse(window.localStorage.getItem("menuHelper"));;
     }
 
     srv.hasLogged = function() {
+        var currUser = JSON.parse(window.localStorage.getItem("user"));
+        (user == null && currUser != null)? user = currUser: 0;
         return (user != null)?true: false;
     }
 
@@ -45,6 +59,7 @@ service('userService', function($http, consts) {
 
     srv.logout = function() {
         window.localStorage.removeItem('user');
+        window.localStorage.removeItem('menuHelper');
         user = null;
         userID = null;
         menuHelper = null;

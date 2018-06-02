@@ -6,6 +6,7 @@ controller('updateWeightController', function($scope, $location, $http, consts, 
         userService.getUser(null, function(usr){
             usr.Measurement.Weight = ctrl.Weight;
             $http.post(`${consts.insertOrUpdateUser}`, usr).then(function({data}) {
+                userService.updateMeasurementCache(usr.Measurement);
                 if (usr.Measurement.Weight == usr.Goal.GoalWeight){
                     showAlert();
                     $location.path("/updategoal");

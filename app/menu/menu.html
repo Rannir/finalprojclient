@@ -16,7 +16,7 @@
                     </td>
                 </tr>
                 <tr ng-repeat="x in ctrl.selectedMenu.Breakfast">
-                    <td>{{ x.Name }}</td>
+                    <td class="Menu-item">{{ x.Name + " (" + (x.Grams * x.Count) + " g.)" }}</td>
                 </tr>
                 <tr>
                     <td>
@@ -24,7 +24,7 @@
                     </td>
                 </tr>
                 <tr ng-repeat="x in ctrl.selectedMenu.Lunch">
-                    <td>{{ x.Name }}</td>
+                    <td class="Menu-item">{{ x.Name + " (" + (x.Grams * x.Count) + " g.)" }}</td>
                 </tr>
                 <tr>
                     <td>
@@ -32,13 +32,14 @@
                     </td>
                 </tr>
                 <tr ng-repeat="x in ctrl.selectedMenu.Dinner">
-                    <td>{{ x.Name }}</td>
+                    <td class="Menu-item">{{ x.Name + " (" + (x.Grams * x.Count) + " g.)" }}</td>
                 </tr>
             </table>
         </div>        
-        <md-button class="md-raised" ng-click="ctrl.prevMenu()">Previous</md-button>
-        <md-button class="md-raised" ng-click="ctrl.nextMenu()">Next</md-button>
+        <br/>
+        <md-button class="md-raised" ng-click="ctrl.prevMenu()" ng-disabled="!(ctrl.menuIndex > 0)">Previous</md-button>
         <md-button class="md-raised" ng-click="ctrl.editMenu()">Choose</md-button>
+        <md-button class="md-raised" ng-click="ctrl.nextMenu()" ng-disabled="!(ctrl.menuIndex < 4)">Next</md-button>
         <!-- <md-button class="md-raised" ng-click="ctrl.editMenu()">Edit</md-button> -->
     </section>
 </div>

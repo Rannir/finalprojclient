@@ -1,13 +1,13 @@
 <div class="menuPage container">
         <section class="center-text">
                 <h2 class="cursive cursive-header pAHeader">
-                  <span>Menu</span>
+                  <span>{{ctrl.editable ? 'Edit Menu' : 'Menu'}}</span>
                 </h2>
              
               </section>
     <section class="middleSection  extra-container">
-        <div style="padding: 0 20px">
-            <h2 class="MenuName center-text">Edit Menu</h2>
+        <div style="padding: 20px">
+            <!-- <h2 class="MenuName center-text">Edit Menu</h2> -->                      
             <md-progress-circular ng-show="ctrl.loader" md-diameter="80"></md-progress-circular>
             <table class="menuTable" ng-show="!ctrl.loader">                
                     <tr>
@@ -138,34 +138,39 @@
                             </tr>
                 </div>
                 <tr>
-                        <td colspan=4></td>
+                        <td colspan=6><br/></td>
                 </tr>
                 <tr>
-                    <td colspan=4>Acceptable Ranges</td>
+                    <td colspan=6><span>Acceptable Ranges</span></td>
                 </tr>
                 <tr>
-                    <td>Protains</td>
-                    <td>Fats</td>
-                    <td>calories</td>
-                    <td>carbohydrates</td>
+                    <td>&#9;</td>
+                    <td><span>Protains</span></td>
+                    <td><span>Fats</span></td>
+                    <td><span>calories</span></td>
+                    <td><span>carbohydrates</span></td>
+                    <td>&#9;</td>
                 </tr>
                 <tr>
+                        <td>&#9;</td>
                     <td ng-class="{exceedAlert: ctrl.exceedProteins}">
-                        {{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}
+                        <span>{{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}</span>
                     </td>
                     <td ng-class="{exceedAlert: ctrl.exceedFats}">
-                        {{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}
+                        <span>{{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}</span>
                     </td>
                     <td ng-class="{exceedAlert: ctrl.exceedCalories}">
-                        {{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}
+                        <span>{{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}</>
                     </td>
                     <td ng-class="{exceedAlert: ctrl.exceedCarbohydrates}">
-                        {{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}
+                        <span>{{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}</span>
                     </td>
+                    <td>&#9;</td>
                 </tr>
             </table>    
-        </div>               
-        <md-button ng-click="ctrl.Finish()">Finish</md-button>
+        </div>          
+        <br/>
+        <md-button ng-click="ctrl.Finish()" ng-show="!ctrl.editable">Finish</md-button>
         <md-button ng-click="ctrl.Edit()">{{ctrl.editable ? 'Done':'Edit'}}</md-button>
     </section>
 </div>

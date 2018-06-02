@@ -135,6 +135,12 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     }
 
     ctrl.Edit = function() {
+        if (ctrl.editable) {
+            dashydash.remove(ctrl.DistinctMenu.Breakfast, {'FoodID' : 0});
+            dashydash.remove(ctrl.DistinctMenu.Lunch, {'FoodID' : 0});
+            dashydash.remove(ctrl.DistinctMenu.Dinner, {'FoodID' : 0});
+        }
+
         ctrl.editable = !ctrl.editable;
         ctrl.DistinctMenu = angular.copy(ctrl.DistinctMenu);
     }

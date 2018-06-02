@@ -19,6 +19,10 @@
     color: black;
 }
 
+.Menu-item {
+    padding: 5px;
+}
+
 .middleSectionMenu{
     background: rgba(255,255,255,0.7);
     padding: 20px;
@@ -30,6 +34,7 @@
     width: 100%;
     text-align: center;
     color: #757575;
+    table-layout: fixed;
 }
 
 .MenuName{    

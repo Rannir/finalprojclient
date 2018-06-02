@@ -10,28 +10,46 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
             $http.get(`${consts.algApi}/${usr.UserID}`)
                 .then(function(response){
                     ctrl.menus = response.data;
-                    ctrl.selectedMenu = ctrl.menus[ctrl.menuIndex];
+                    distinctMenuItems();
+                    ctrl.selectedMenu = ctrl.CountedMenus[ctrl.menuIndex];
                     ctrl.loader = false;
                 });
         });
     }
 
     function distinctMenuItems(){
+        var CountedMenu;
+        ctrl.CountedMenus = [];
+
         for (const i in ctrl.menus) {
-            if (ctrl.menus.hasOwnProperty(i)) {
-                //const element = ;
-                
+            CountedMenu = {
+                Breakfast : [],
+                Lunch : [],
+                Dinner : []
+            };
+    
+            CountedMenu.Breakfast = dashydash.uniqBy(ctrl.menus[i].Breakfast, 'FoodID');
+            CountedMenu.Lunch = dashydash.uniqBy(ctrl.menus[i].Lunch, 'FoodID');
+            CountedMenu.Dinner = dashydash.uniqBy(ctrl.menus[i].Dinner, 'FoodID');
+            
+            for (const mealType in CountedMenu) {
+                for (const i in CountedMenu[mealType]) {
+                    CountedMenu[mealType][i].Count = dashydash.filter(ctrl.menus[i][mealType], ['FoodID', CountedMenu[mealType][i].FoodID]).length;       
+                }
+                dashydash.sortBy(CountedMenu[mealType], ['FoodID']);
             }
+
+            ctrl.CountedMenus.push(angular.copy(CountedMenu));
         }
     }
 
     ctrl.nextMenu = function() {
         if (ctrl.menuIndex < consts.maxMenu)
-            ctrl.selectedMenu = ctrl.menus[++ctrl.menuIndex];
+            ctrl.selectedMenu = ctrl.CountedMenus[++ctrl.menuIndex];
     }
     ctrl.prevMenu = function() {
         if (ctrl.menuIndex > consts.minMenu)
-            ctrl.selectedMenu = ctrl.menus[--ctrl.menuIndex];
+            ctrl.selectedMenu = ctrl.CountedMenus[--ctrl.menuIndex];
     }
 
     ctrl.chooseMenu = function() {

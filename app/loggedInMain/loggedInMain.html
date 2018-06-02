@@ -12,6 +12,22 @@
             <canvas class="chart chart-line grap" chart-data="ctrl.Golas.data" chart-labels="ctrl.Golas.labels" chart-series="ctrl.Golas.series">
             </canvas>    
         </section>
+        <section>
+            <h1> personal details </h1>
+            <section class="middleSection ">
+                <div class="personalDetailsItem">
+                    <h3> current details </h3>
+                    <p>current weight : {{ctrl.usr.Measurement.Weight}}</p>
+                    <p>current body fat : {{ctrl.usr.Measurement.BodyFat}}</p>
+                    </div>
+                <div class="personalDetailsItem">
+                    <h3> goal details </h3>
+                    <p>goal starting weight : {{ctrl.usr.Goal.StartingWeight}}</p>
+                    <p>goal weight : {{ctrl.usr.Goal.GoalWeight}}</p>
+                    <p>goal body fat : {{ctrl.usr.Goal.BodyFat}}</p>
+                <div>
+            </section>
+        </section>
             
         <!-- <section class="center-text">
             <md-button class="md-raised enterBtn" ng-click="ctrl.progress()">enter Progress</md-button>

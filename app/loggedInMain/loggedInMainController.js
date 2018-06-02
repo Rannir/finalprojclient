@@ -3,6 +3,8 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
     const ctrl = this;
     
     userService.getUser(null, function(usr){
+        ctrl.usr = usr;
+
         ctrl.labels = ["Starting weight", "Current weight", "Goal weight"];
         ctrl.data = [usr.Goal.StartingWeight, usr.Measurement.Weight, usr.Goal.GoalWeight];
         ctrl.series = ['Goals'];

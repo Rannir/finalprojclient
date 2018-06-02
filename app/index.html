@@ -92,4 +92,20 @@
 <script> wow = new WOW().init(); </script>
 
 
+<script>
+    $(document).ready(function () {
+        $(".navbar-nav li a").click(function (event) {
+            $("v").collapse('hide');
+        });
+    });
+
+    $(document).ready(function () {
+        $(".navbar-toggler").click(function () {
+            if ($(".navbar .show").length > 0) {
+                $(".navbar-collapse").removeClass("show");
+            }
+        });
+    });
+</script>
+
 </html>

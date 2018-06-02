@@ -134,14 +134,14 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     }
 
     function nautritionGoalsRange(ng){
-        this.minProteins = ng.Proteins - 35;
-        this.maxProteins = ng.Proteins + 35;
-        this.minFats = ng.Fats - 10;
-        this.maxFats = ng.Fats + 10;
-        this.minCalories = ng.Calories - 200;
-        this.maxCalories = ng.Calories + 200;
-        this.minCarbohydrates = ng.Carbohydrates - 40;
-        this.maxCarbohydrates = ng.Carbohydrates + 40;
+        this.minProteins = ng.Proteins - 10;
+        this.maxProteins = ng.Proteins + 20;
+        this.minFats = ng.Fats - 5;
+        this.maxFats = ng.Fats + 5;
+        this.minCalories = ng.Calories - 100;
+        this.maxCalories = ng.Calories + 100;
+        this.minCarbohydrates = ng.Carbohydrates - 100;
+        this.maxCarbohydrates = ng.Carbohydrates + 100;
     }
     
     ctrl.load();

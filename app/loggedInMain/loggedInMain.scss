@@ -53,15 +53,11 @@
 
 .grap{
     @media screen and (max-width: $wide){
-        width: 50% !important;
-        height: 50% !important;
-    }
-    @media screen and (max-width: $small){
-        width: 50% !important;
-        height: 58% !important;
+        width: 100% !important;
+        height: 100% !important;
     }
     @media screen and (max-width: $narrow){
-        width: 85% !important;
-        height: 34% !important;
+        width: 100% !important;
+        height: 70% !important;
     }
 }

@@ -2,13 +2,13 @@ angular.module('personalTrainer').
 controller('loggedInMainController', function($scope, $location, $http, consts, userService) {
     const ctrl = this;
     
+    ctrl.options = {
+        fill: false,
+        lineTension: 0
+    };
+    
     userService.getUser(null, function(usr){
         ctrl.usr = usr;
-
-        ctrl.options = {
-            fill: false,
-            lineTension: 0
-        };
 
         ctrl.labels = ["Starting weight", "Current weight", "Goal weight"];
         ctrl.data = [usr.Goal.StartingWeight, usr.Measurement.Weight, usr.Goal.GoalWeight];

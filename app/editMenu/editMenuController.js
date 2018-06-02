@@ -4,6 +4,16 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     ctrl.exceedProteins = ctrl.exceedFats = ctrl.exceedCarbohydrates = ctrl.exceedCalories = false;
     ctrl.editable = false;
     ctrl.Amount = [1,2,3,4,5];
+    var emptyFood = {
+        Calories: 0,
+        Carbohydrates: 0,
+        Fat: 0,
+        FoodID: 0,
+        Grams: 0,
+        Name: "",
+        Protein: 0,
+        Count: 1,
+    };
 
     ctrl.load = function() {
         userService.getUser(null, function(usr){
@@ -119,6 +129,11 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
         dashydash.remove(ctrl.CountedMenu[mealType], {'FoodID' : food.FoodID});
     }
 
+    ctrl.addFoodToMealType = function(mealType){
+        ctrl.DistinctMenu[mealType].push(angular.copy(emptyFood));
+        ctrl.CountedMenu[mealType].push(angular.copy(emptyFood));
+    }
+
     ctrl.Edit = function() {
         ctrl.editable = !ctrl.editable;
         ctrl.DistinctMenu = angular.copy(ctrl.DistinctMenu);
@@ -144,12 +159,17 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     ctrl.onChangeFood = function(oldFood, newFood, index, mealType) {
         if (oldFood.FoodID != newFood.FoodID) {           
             ctrl.clearSearchTerm();
-            
-            var indexOldFood = dashydash.findIndex(ctrl.menu[mealType], ['FoodID', oldFood.FoodID]);
-            while (indexOldFood != -1) {
-                ctrl.menu[mealType][indexOldFood] = angular.copy(newFood);
 
-                indexOldFood = dashydash.findIndex(ctrl.menu[mealType], ['FoodID', oldFood.FoodID]);
+            if (oldFood.FoodID == 0) {
+                ctrl.menu[mealType].push(newFood);
+            }
+            else {
+                var indexOldFood = dashydash.findIndex(ctrl.menu[mealType], ['FoodID', oldFood.FoodID]);
+                while (indexOldFood != -1) {
+                    ctrl.menu[mealType][indexOldFood] = angular.copy(newFood);
+
+                    indexOldFood = dashydash.findIndex(ctrl.menu[mealType], ['FoodID', oldFood.FoodID]);
+                }
             }
 
             newFood.Count = ctrl.CountedMenu[mealType][index].Count;

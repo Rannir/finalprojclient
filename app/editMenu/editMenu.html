@@ -6,7 +6,7 @@
              
               </section>
     <section class="middleSection  extra-container">
-        <div>
+        <div style="padding: 0 20px">
             <h2 class="MenuName center-text">Edit Menu</h2>
             <md-progress-circular ng-show="ctrl.loader" md-diameter="80"></md-progress-circular>
             <table class="menuTable" ng-show="!ctrl.loader">                
@@ -18,7 +18,8 @@
                     <tr ng-repeat="food in ctrl.DistinctMenu.Breakfast">                        
                         <td ng-show="ctrl.editable">
                             <md-select ng-model="ctrl.CountedMenu.Breakfast[$index].Count"
-                                        ng-change="ctrl.onChangeAmount(ctrl.CountedMenu.Breakfast[$index], 'Breakfast')">
+                                        ng-change="ctrl.onChangeAmount(ctrl.CountedMenu.Breakfast[$index], 'Breakfast')"
+                                        ng-disabled="!ctrl.DistinctMenu.Breakfast[$index].FoodID">
                                 <md-option ng-repeat="num in ctrl.Amount" ng-value="num">{{num}}</md-option>
                             </md-select>
                         </td>
@@ -43,64 +44,98 @@
                             </md-select>
                         </td>
                         <td ng-show="ctrl.editable">
-                            <md-button class="remove-food-button" ng-click="ctrl.removeFoodFromMealType($index,'Breakfast')">X</md-button>
+                            <md-button class="food-button" ng-click="ctrl.removeFoodFromMealType($index,'Breakfast')">X</md-button>
                         </td>                        
                     </tr>
+                    <tr ng-show="ctrl.editable">
+                            <td  colspan=6>
+                                <md-button class="food-button" ng-click="ctrl.addFoodToMealType('Breakfast')">+</md-button>
+                            </td>
+                        </tr>
                     <tr>
-                        <td colspan=4>
+                        <td colspan=6>
                             <h3>Lunch</h3>
                         </td>
                     </tr>
-                    <tr ng-repeat="food in ctrl.DistinctMenu.Lunch">
-                        
-                        <td colspan=4>
+                    <tr ng-repeat="food in ctrl.DistinctMenu.Lunch">                        
+                            <td ng-show="ctrl.editable">
+                                <md-select ng-model="ctrl.CountedMenu.Lunch[$index].Count"
+                                            ng-change="ctrl.onChangeAmount(ctrl.CountedMenu.Lunch[$index], 'Lunch')"
+                                            ng-disabled="!ctrl.DistinctMenu.Lunch[$index].FoodID">
+                                    <md-option ng-repeat="num in ctrl.Amount" ng-value="num">{{num}}</md-option>
+                                </md-select>
+                            </td>
+                            <td colspan="{{ctrl.editable ? 4 : 6}}">
                                 <md-select ng-model="ctrl.DistinctMenu.Lunch[$index]" 
-                                ng-model-options="{trackBy: '$value.FoodID'}"
-                                ng-change="ctrl.onChange()"
-                                md-on-close="clearSearchTerm()"
-                                ng-disabled="!ctrl.editable"
-                                data-md-container-class="selectdemoSelectHeader"
-                                md-selected-text="ctrl.getSelectedFoodText(ctrl.DistinctMenu.Lunch[$index], 'Lunch')">
-                         <md-select-header class="demo-select-header">
-                             <input ng-model="ctrl.searchTerm"
-                                    type="search"
-                                    placeholder="Search for a food item.."
-                                    class="demo-header-searchbox md-text"/>
-                         </md-select-header>
-                         <md-option ng-value="repFood" 
-                                    ng-repeat="repFood in ctrl.FoodByMealType.Lunch | filter:ctrl.searchTerm">
-                                    {{repFood.Name}}
-                         </md-option>
-                     </md-select>
-                        </td>
-                    </tr>
+                                           ng-model-options="{trackBy: '$value.FoodID'}"
+                                           ng-change="ctrl.onChangeFood({{ctrl.DistinctMenu.Lunch[$index]}}, ctrl.DistinctMenu.Lunch[$index], $index, 'Lunch')"
+                                           md-on-close="clearSearchTerm()"
+                                           ng-disabled="!ctrl.editable"
+                                           data-md-container-class="selectdemoSelectHeader"
+                                           md-selected-text="ctrl.getSelectedFoodText(ctrl.DistinctMenu.Lunch[$index], 'Lunch')">
+                                    <md-select-header class="demo-select-header">
+                                        <input ng-model="ctrl.searchTerm"
+                                               type="search"
+                                               placeholder="Search for a food item.."
+                                               class="demo-header-searchbox md-text"/>
+                                    </md-select-header>
+                                    <md-option ng-repeat="repFood in ctrl.FoodByMealType.Lunch | filter:ctrl.searchTerm"
+                                               ng-value="repFood">
+                                               {{repFood.Name}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td ng-show="ctrl.editable">
+                                <md-button class="food-button" ng-click="ctrl.removeFoodFromMealType($index,'Lunch')">X</md-button>
+                            </td>                        
+                        </tr>                    
+                        <tr ng-show="ctrl.editable" >
+                                <td colspan=6>
+                                    <md-button class="food-button" ng-click="ctrl.addFoodToMealType('Lunch')">+</md-button>
+                                </td>
+                            </tr>
                     <tr>
-                        <td colspan=4>
+                        <td colspan=6>
                             <h3>Dinner</h3>
                         </td>
                     </tr>
-                    <tr ng-repeat="food in ctrl.DistinctMenu.Dinner">
-                        <td colspan=4>
+                    <tr ng-repeat="food in ctrl.DistinctMenu.Dinner">                        
+                            <td ng-show="ctrl.editable">
+                                <md-select ng-model="ctrl.CountedMenu.Dinner[$index].Count"
+                                            ng-change="ctrl.onChangeAmount(ctrl.CountedMenu.Dinner[$index], 'Dinner')"
+                                            ng-disabled="!ctrl.DistinctMenu.Dinner[$index].FoodID">
+                                    <md-option ng-repeat="num in ctrl.Amount" ng-value="num">{{num}}</md-option>
+                                </md-select>
+                            </td>
+                            <td colspan="{{ctrl.editable ? 4 : 6}}">
                                 <md-select ng-model="ctrl.DistinctMenu.Dinner[$index]" 
-                                    ng-model-options="{trackBy: '$value.FoodID'}"
-                                    ng-change="ctrl.onChange()"
-                                    ng-disabled="!ctrl.editable"
-                                    md-on-close="clearSearchTerm()"
-                                    data-md-container-class="selectdemoSelectHeader"
-                                    md-selected-text="ctrl.getSelectedFoodText(ctrl.DistinctMenu.Dinner[$index], 'Dinner')">
-                                <md-select-header class="demo-select-header">
-                                    <input ng-model="ctrl.searchTerm"
-                                            type="search"
-                                            placeholder="Search for a food item.."
-                                            class="demo-header-searchbox md-text"/>
-                                </md-select-header>
-                                <md-option ng-value="repFood" 
-                                            ng-repeat="repFood in ctrl.FoodByMealType.Dinner | filter:ctrl.searchTerm">
-                                            {{repFood.Name}}
-                                </md-option>
-                            </md-select>
-                        </td>
-                    </tr>
+                                           ng-model-options="{trackBy: '$value.FoodID'}"
+                                           ng-change="ctrl.onChangeFood({{ctrl.DistinctMenu.Dinner[$index]}}, ctrl.DistinctMenu.Dinner[$index], $index, 'Dinner')"
+                                           md-on-close="clearSearchTerm()"
+                                           ng-disabled="!ctrl.editable"
+                                           data-md-container-class="selectdemoSelectHeader"
+                                           md-selected-text="ctrl.getSelectedFoodText(ctrl.DistinctMenu.Dinner[$index], 'Dinner')">
+                                    <md-select-header class="demo-select-header">
+                                        <input ng-model="ctrl.searchTerm"
+                                               type="search"
+                                               placeholder="Search for a food item.."
+                                               class="demo-header-searchbox md-text"/>
+                                    </md-select-header>
+                                    <md-option ng-repeat="repFood in ctrl.FoodByMealType.Dinner | filter:ctrl.searchTerm"
+                                               ng-value="repFood">
+                                               {{repFood.Name}}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td ng-show="ctrl.editable">
+                                <md-button class="food-button" ng-click="ctrl.removeFoodFromMealType($index,'Dinner')">X</md-button>
+                            </td>                        
+                        </tr>
+                        <tr ng-show="ctrl.editable">
+                                <td colspan=6>
+                                    <md-button class="food-button" ng-click="ctrl.addFoodToMealType('Dinner')">+</md-button>
+                                </td>
+                            </tr>
                 </div>
                 <tr>
                         <td colspan=4></td>

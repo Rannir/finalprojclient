@@ -14,6 +14,10 @@
         padding-bottom: 7.5px;
     }
 }
+.md-select-value *:first-child
+{
+    color: black;
+}
 
 .middleSectionMenu{
     background: rgba(255,255,255,0.7);

@@ -69,7 +69,7 @@ html,body{
     width: 50%;
     display: block;
     margin: 0 auto;
-
+    margin-bottom: 25px;
     @media screen and (max-width: $tomobile){
         width: 75%;
     }

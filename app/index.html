@@ -6,8 +6,13 @@
         <link rel="icon" href="css\images\Logo.jpg" />
         <title>FitEat</title>
     </head>
+<<<<<<< HEAD
+    <body ng-app="personalTrainer" class=" backgroundLandscape">
+        <!-- <toaster-container toaster-options="{'time-out': 7000}"></toaster-container> -->
+=======
     <body ng-app="personalTrainer" ng-controller="mainController" class=" backgroundLandscape">
         <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+>>>>>>> d829dbe0b40944b88e91b3f01e7ff1c179935172
         
 
        <md-toolbar class="nav-bar">
@@ -18,7 +23,7 @@
       
               <a class="logo">FitEat</a>
 
-              <section  ng-show="hasLogged()">
+              <section  ng-if="hasLogged()">
                 <md-button  ng-href="#/updateweight">Update Weight</md-button>
                 <md-button  ng-href="#/updategoal">Update Goal</md-button>
                 <md-button  ng-href="#/main">Statistics</md-button>
@@ -26,15 +31,11 @@
               </section>
 
               <div flex></div>
-              <md-button ng-show="!hasLogged()" ng-href="#/login">Login</md-button>
-              <a class="md-button md-ink-ripple" ng-show="hasLogged()" ng-click="logout()">Log Out</a>
+              <md-button ng-if="!hasLogged()" ng-href="#/login">Login</md-button>
+              <a class="md-button md-ink-ripple" ng-if="hasLogged()" ng-click="logout()">Log Out</a>
             </div>
           </md-toolbar>
-       
-        <div  ng-view >
-            
-        </div> 
-        <!--img class="sideBackground" src="css\images\tomatoBackground.png"--> 
+          <div  ng-view ></div>
     </body>
     <script src="js/app.js"></script>
     <link rel="stylesheet" media="all" type="text/css" href="css/styles.css"/>

@@ -7,12 +7,10 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     ctrl.load = function() {
         userService.getUser(null, function(usr){
             ctrl.menu = userService.getMenu();
-
             if(angular.isUndefinedOrNull(ctrl.menu)) {
                 $location.path("/main");
             }
             else {
-
                 ctrl.loader = true;
                 $http.get(`${consts.nautritionGoalsApi}/`+ usr.UserID)
                             .then(function(response){
@@ -28,6 +26,7 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                                         });
                                         ctrl.loader = false;
                                         showAlert();
+                                        distinctMenuItems();
                                 });
                         }); 
                 }
@@ -56,6 +55,25 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
         else {
             $location.path("/main");
         }
+    }
+
+    function distinctMenuItems() {
+        var newMenu = {
+            Breakfast : [],
+            Lunch : [],
+            Dinner : []
+        };
+
+        newMenu.Breakfast = dashydash.uniqBy(ctrl.menu.Breakfast, 'FoodID');
+        newMenu.Lunch = dashydash.uniqBy(ctrl.menu.Lunch, 'FoodID');
+        newMenu.Dinner = dashydash.uniqBy(ctrl.menu.Dinner, 'FoodID');
+        
+        for (const prop in newMenu) {
+            for (const i in newMenu[prop]) {
+                newMenu[prop][i].count = dashydash.filter(ctrl.menu[prop], ['FoodID', newMenu[prop][i].FoodID]).length;       
+            }
+        }
+        var a = 5;
     }
 
     ctrl.Edit = function() {

@@ -16,6 +16,10 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
         });
     }
 
+    function distinctMenuItems(){
+        
+    }
+
     ctrl.nextMenu = function() {
         if (ctrl.menuIndex < consts.maxMenu)
             ctrl.selectedMenu = ctrl.menus[++ctrl.menuIndex];

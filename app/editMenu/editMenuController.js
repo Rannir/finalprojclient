@@ -22,6 +22,7 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                                     });
                                     ctrl.loader = false;
                                     showAlert();
+                                    distinctMenuItems();
                             });
                     }); 
         });       
@@ -40,16 +41,39 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                 menu: ctrl.menu
             };
 
-            if(ctrl.menu.MenuID == 0){
-                $location.path("/main");                
-            }
-            else{
-                $http.post(`${consts.insertApi}`, menuHelper)
+            // if(ctrl.menu.MenuID == 0){
+            //     $location.path("/main");                
+            // }
+            // else{
+            //     $http.post(`${consts.insertApi}`, menuHelper)
+            //         .then(function({data}) {
+            //             $location.path("/main");
+            //     });
+            // }
+            $http.post(`${consts.insertApi}`, menuHelper)
                     .then(function({data}) {
                         $location.path("/main");
                 });
-            }
         });
+    }
+
+    function distinctMenuItems() {
+        var newMenu = {
+            Breakfast : [],
+            Lunch : [],
+            Dinner : []
+        };
+
+        newMenu.Breakfast = dashydash.uniqBy(ctrl.menu.Breakfast, 'FoodID');
+        newMenu.Lunch = dashydash.uniqBy(ctrl.menu.Lunch, 'FoodID');
+        newMenu.Dinner = dashydash.uniqBy(ctrl.menu.Dinner, 'FoodID');
+        
+        for (const prop in newMenu) {
+            for (const i in newMenu[prop]) {
+                newMenu[prop][i].count = dashydash.filter(ctrl.menu[prop], ['FoodID', newMenu[prop][i].FoodID]).length;       
+            }
+        }
+        var a = 5;
     }
 
     ctrl.Edit = function() {

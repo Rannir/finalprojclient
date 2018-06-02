@@ -176,6 +176,20 @@ md-toolbar {
     li:last-child {
         border:none;
     }
+    
+}
+
+.nav-item {
+    a:hover{ 
+        color: yellow !important;
+        -webkit-transform: scale(1.2) !important;
+
+        @media screen and (max-width: $tomobile) {
+            font-size: 20px;
+            color: yellow !important;
+            -webkit-transform: none !important;
+        }
+    }
 }
 
 

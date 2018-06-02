@@ -7,24 +7,29 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
     ctrl.load = function() {
         userService.getUser(null, function(usr){
             ctrl.menu = userService.getMenu();
-            ctrl.loader = true;
-            $http.get(`${consts.nautritionGoalsApi}/`+ usr.UserID)
-                        .then(function(response){
-                            ctrl.nautritionGoals = new nautritionGoalsRange(response.data);
-                            $http.get(`${consts.similarFoodApi}`)
-                                .then(function(response2){
-                                    ctrl.FoodByMealType = response2.data;
-                                    
-                                    // The md-select directive eats keydown events for some quick select
-                                    // logic. Since we have a search input here, we don't need that logic.
-                                    $('.menuTable').find('input').on('keydown', function(ev) {
-                                        ev.stopPropagation();
-                                    });
-                                    ctrl.loader = false;
-                                    showAlert();
-                                    distinctMenuItems();
-                            });
-                    }); 
+            if(angular.isUndefinedOrNull(ctrl.menu)) {
+                $location.path("/main");
+            }
+            else {
+                ctrl.loader = true;
+                $http.get(`${consts.nautritionGoalsApi}/`+ usr.UserID)
+                            .then(function(response){
+                                ctrl.nautritionGoals = new nautritionGoalsRange(response.data);
+                                $http.get(`${consts.similarFoodApi}`)
+                                    .then(function(response2){
+                                        ctrl.FoodByMealType = response2.data;
+                                        
+                                        // The md-select directive eats keydown events for some quick select
+                                        // logic. Since we have a search input here, we don't need that logic.
+                                        $('.menuTable').find('input').on('keydown', function(ev) {
+                                            ev.stopPropagation();
+                                        });
+                                        ctrl.loader = false;
+                                        showAlert();
+                                        distinctMenuItems();
+                                });
+                        }); 
+                }
         });       
     }
 
@@ -34,27 +39,22 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
       
 
     ctrl.Finish = function() {
-        userService.getUser(null, function(usr){
-            usr.menu = ctrl.menu;
-            var menuHelper = {
-                UserID: usr.UserID, 
-                menu: ctrl.menu
-            };
-
-            // if(ctrl.menu.MenuID == 0){
-            //     $location.path("/main");                
-            // }
-            // else{
-            //     $http.post(`${consts.insertApi}`, menuHelper)
-            //         .then(function({data}) {
-            //             $location.path("/main");
-            //     });
-            // }
-            $http.post(`${consts.insertApi}`, menuHelper)
-                    .then(function({data}) {
-                        $location.path("/main");
+        if(ctrl.editable) {
+            userService.getUser(null, function(usr){
+                usr.menu = ctrl.menu;
+                var menuHelper = {
+                    UserID: usr.UserID, 
+                    menu: ctrl.menu
+                };
+    
+                $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
+                    $location.path("/main");
                 });
-        });
+            });
+        }
+        else {
+            $location.path("/main");
+        }
     }
 
     function distinctMenuItems() {

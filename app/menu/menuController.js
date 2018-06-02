@@ -64,6 +64,8 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
 
             $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
                 userService.setMenu(ctrl.menus[ctrl.menuIndex]);
+                usr.Goal.MenuID = data.MenuID;
+                userService.updateGoalCache(usr.Goal);
                 $location.path("/editMenu");
             });
         });

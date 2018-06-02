@@ -48,6 +48,8 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                 };
     
                 $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
+                    usr.Goal.MenuID = data.Goal.MenuID;
+                    userService.updateGoalCache(usr.Goal);
                     $location.path("/main");
                 });
             });

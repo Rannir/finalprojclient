@@ -15,9 +15,9 @@
                             <h3>Breakfast</h3>
                         </td>
                     </tr>
-                    <tr ng-repeat="food in ctrl.menu.Breakfast">
+                    <tr ng-repeat="food in ctrl.CountedMenu.Breakfast">
                         <td colspan=4>
-                            <md-select ng-model="ctrl.menu.Breakfast[$index]" 
+                            <md-select ng-model="ctrl.CountedMenu.Breakfast[$index]" 
                                        ng-model-options="{trackBy: '$value.FoodID'}"
                                        ng-change="ctrl.onChange()"
                                        md-on-close="clearSearchTerm()"
@@ -31,7 +31,7 @@
                                 </md-select-header>
                                 <md-option ng-value="repFood" 
                                            ng-repeat="repFood in ctrl.FoodByMealType.Breakfast | filter:ctrl.searchTerm">
-                                           {{repFood.Name}}
+                                           {{repFood.Name}} {{!ctrl.editable ? (repFood.count * repFood.Grams) : ''}}
                                 </md-option>
                             </md-select>
                         </td>
@@ -41,10 +41,10 @@
                             <h3>Lunch</h3>
                         </td>
                     </tr>
-                    <tr ng-repeat="food in ctrl.menu.Lunch">
+                    <tr ng-repeat="food in ctrl.CountedMenu.Lunch">
                         
                         <td colspan=4>
-                                <md-select ng-model="ctrl.menu.Lunch[$index]" 
+                                <md-select ng-model="ctrl.CountedMenu.Lunch[$index]" 
                                 ng-model-options="{trackBy: '$value.FoodID'}"
                                 ng-change="ctrl.onChange()"
                                 md-on-close="clearSearchTerm()"
@@ -68,9 +68,9 @@
                             <h3>Dinner</h3>
                         </td>
                     </tr>
-                    <tr ng-repeat="food in ctrl.menu.Dinner">
+                    <tr ng-repeat="food in ctrl.CountedMenu.Dinner">
                         <td colspan=4>
-                                <md-select ng-model="ctrl.menu.Dinner[$index]" 
+                                <md-select ng-model="ctrl.CountedMenu.Dinner[$index]" 
                                 ng-model-options="{trackBy: '$value.FoodID'}"
                                 ng-change="ctrl.onChange()"
                                 ng-disabled="!ctrl.editable"

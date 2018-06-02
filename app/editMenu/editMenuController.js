@@ -73,7 +73,8 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                 newMenu[prop][i].count = dashydash.filter(ctrl.menu[prop], ['FoodID', newMenu[prop][i].FoodID]).length;       
             }
         }
-        var a = 5;
+
+        ctrl.CountedMenu = newMenu;
     }
 
     ctrl.Edit = function() {

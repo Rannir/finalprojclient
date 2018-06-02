@@ -17,7 +17,12 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     }
 
     function distinctMenuItems(){
-        
+        for (const i in ctrl.menus) {
+            if (ctrl.menus.hasOwnProperty(i)) {
+                //const element = ;
+                
+            }
+        }
     }
 
     ctrl.nextMenu = function() {
@@ -55,18 +60,8 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
     }
 
     ctrl.editMenu = function() {
-        userService.getUser(null, function(usr){
-            usr.menu = ctrl.menus[ctrl.menuIndex];
-            var menuHelper = {
-                UserID: usr.UserID, 
-                menu: ctrl.menus[ctrl.menuIndex]
-            };
-
-            $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
-                userService.setMenu(ctrl.menus[ctrl.menuIndex]);
-                $location.path("/editMenu");
-            });
-        });
+        userService.setMenu(ctrl.menus[ctrl.menuIndex]);
+        $location.path("/editMenu");
     }
     
     ctrl.load();

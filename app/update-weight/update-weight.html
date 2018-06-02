@@ -12,13 +12,17 @@
     </div>
     Lets see where we are at
 
-    <md-input-container>
+        <md-input-container>
             <label>Weight</label>
             <input name="Weight" ng-model="ctrl.Weight" required type="number">
         </md-input-container>
-<div class="center-text">
-        <md-button  type="submit" class="md-raised startMyJourneybtn" ng-click="ctrl.update()">update</md-button>
-</div>
+        <md-input-container>
+                <label>BodyFat</label>
+                <input name="goalBodyFat" ng-model="ctrl.BodyFat" required type="number">
+        </md-input-container>
+        <div class="center-text">
+                <md-button  type="submit" class="md-raised startMyJourneybtn" ng-click="ctrl.update()">update</md-button>
+        </div>
 
 </section>
 </div>

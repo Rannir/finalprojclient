@@ -6,7 +6,8 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
         ctrl.labels = ["Starting weight", "Current weight", "Goal weight"];
         ctrl.data = [usr.Goal.StartingWeight, usr.Measurement.Weight, usr.Goal.GoalWeight];
         ctrl.series = ['Goals'];
-    
+        ctrl.Golas = {};
+        ctrl.Golas.series = ['Goals'];
         $http.get(`${consts.MeasurementsByUser}/${usr.UserID}`).then(function({data}){
             dashydash.orderBy(data, ['CreationDate'], ['desc']);
     
@@ -21,7 +22,7 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
             let i = 0;
     
             dashydash.forEach(ctrl.data, function(value) {
-                ctrl.labels.push(`measurement ${i++}`);
+                ctrl.labels.push(`${i++}`);
             });
             
             ctrl.labels[0] = "Starting weight";
@@ -30,6 +31,21 @@ controller('loggedInMainController', function($scope, $location, $http, consts, 
             
             ctrl.data.push(usr.Goal.GoalWeight);
             ctrl.labels.push("Goal weight");
+        });
+        $http.get(`${consts.GetGoalsByUserId}/${usr.UserID}`).then(function({data}){
+            dashydash.orderBy(data, ['CreationDate'], ['desc']);
+
+            ctrl.Golas.data = dashydash.map(data, 'GoalWeight');
+    
+            ctrl.Golas.labels = [];
+            let i = 0;
+    
+            dashydash.forEach(ctrl.Golas.data, function(value) {
+                ctrl.Golas.labels.push(`${i++}`);
+            });
+            
+            ctrl.Golas.labels[0] = "First goal";
+            ctrl.labels[ctrl.data.length - 1] = "Current goal";
         });
     });
 

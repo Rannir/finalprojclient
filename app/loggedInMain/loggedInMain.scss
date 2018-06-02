@@ -9,6 +9,55 @@
     text-align: center;
 }
 
+.pAHeader{
+    max-height: 70px;
+}
+
 .enterBtn{
     width: 150px;
+}
+
+.middleSection {
+    margin-top: 22px;
+    margin-bottom: 5px;
+    width: 100%;
+    @media screen and (max-width: $wide){
+        display: flex;
+    }
+    @media screen and (max-width: $narrow){
+        display: block;
+    }
+}
+
+.divGraps{
+    height: 430px;
+    margin-top: 25px;
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    padding: 20px;
+    display: block;
+    position: relative;
+    border-radius: 4px;
+    @media screen and (max-width: $small){
+        height: 415px;
+    }
+    @media screen and (max-width: $narrow){
+        margin-top: -5px;
+        height: 490px;
+    }
+}
+
+.grap{
+    @media screen and (max-width: $wide){
+        width: 50% !important;
+        height: 50% !important;
+    }
+    @media screen and (max-width: $small){
+        width: 50% !important;
+        height: 58% !important;
+    }
+    @media screen and (max-width: $narrow){
+        width: 85% !important;
+        height: 34% !important;
+    }
 }

@@ -9,6 +9,7 @@ angular.module('personalTrainer').controller('mainController', function($scope, 
         return userService.hasLogged();
     }
 
+
     $scope.editMenu = function() {
         userService.getUser(null, function(usr){
 

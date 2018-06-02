@@ -1,93 +1,88 @@
-<html>
+<html >
     
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="icon" href="css\images\Logo.jpg" />
         <title>FitEat</title>
+
     </head>
-
-    <body ng-app="personalTrainer" ng-controller="mainController" class=" backgroundLandscape">
-        <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
-        
-
-        <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
-
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="#/"><img src="css\images\Logo.jpg" class="logo-image"><a class="logo">FitEat</a></a>
-        
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+    <body ng-app="personalTrainer" ng-controller="mainController">
+        <nav id="navbarMain" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+            
+            <a class="navbar-brand" href="#/">
+                <img src="css\images\Logo.jpg" class="logo-image">
+                <span class="logo">FitEat</span>
+            </a>
+    
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="basicExampleNav">
-        
-                <!-- Links -->
-                <ul class="navbar-nav mr-auto">
-                    <section  ng-if="hasLogged()">
-                        <li class="nav-item">
-                            <a class="nav-link" ng-href="#/updateweight">Update Weight</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" ng-href="#/updategoal">Update Goal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"  ng-href="#/main">Statistics</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"  ng-click="editMenu()">View Menu</a>
-                        </li>
-                    </section>
-                    
-        
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto leftul" ng-show="hasLogged()">
+                    <li class="nav-item">
+                        <a class="nav-link" ng-href="#/updateweight">Update Weight</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ng-href="#/updategoal">Update Goal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ng-href="#/main">Statistics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ng-click="editMenu()">View Menu</a>
+                    </li>
                 </ul>
-                <!-- Links -->
-        
-                <form class="form-inline">
-                    <div class="md-form my-0">
-                            <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a ng-show="!hasLogged()" class="nav-link" ng-href="#/login">Login</a>
-                            <a class="md-button md-ink-ripple" ng-show="hasLogged()" ng-click="logout()">Log Out</a>
-                        </li>
-                    </ul>
-                    </div>
-                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                            <a ng-show="!hasLogged()" class="nav-link" ng-href="#/login"> Login </a>
+                            <a class="nav-link" ng-show="hasLogged()" ng-click="logout()">Log Out</a>
+                    </li>
+                </ul>
             </div>
-            <!-- Collapsible content -->
-        
         </nav>
-
-       <!--<md-toolbar class="nav-bar">
-            <div class="md-toolbar-tools">
-              <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-                  <img src="css\images\Logo.jpg" class="logo-image"> 
-              </md-button>
-      
-              <a class="logo">FitEat</a>
-
-              <section  ng-if="hasLogged()">
-                <md-button  ng-href="#/updateweight">Update Weight</md-button>
-                <md-button  ng-href="#/updategoal">Update Goal</md-button>
-                <md-button  ng-href="#/main">Statistics</md-button>
-                <a class="md-button md-ink-ripple" ng-click="editMenu()">View Menu</a>
-              </section>
-
-              <div flex></div>
-              <md-button ng-if="!hasLogged()" ng-href="#/login">Login</md-button>
-              <a class="md-button md-ink-ripple" ng-if="hasLogged()" ng-click="logout()">Log Out</a>
+        <main class="text-center">
+            <div>
+                <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+    
+                <div class="view">
+                    <div class="full-bg-img">
+                        <div class="viewNg" ng-view></div>
+                    </div>
+                </div>
             </div>
-
-          </md-toolbar>-->
-       
-        <div  ng-view >
-            
-        </div> 
-        <!--img class="sideBackground" src="css\images\tomatoBackground.png"--> 
+        </main>
     </body>
+    
+
+    <!--<body ng-app="personalTrainer" ng-controller="mainController">
+        <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+        
+        <div class="view intro-2">
+            <div class="full-bg-img">-->
+                    <!--<div ng-view ></div> -->
+
+
+                <!--<div class="flex-center">
+                    <div class="container text-center white-text">
+                        <div class="white-text text-center wow fadeInUp">
+                            <h2>This Navbar is fixed</h2>
+                            <h5>It will always stay visible on the top, even when you scroll down</h5>
+                            <br>
+                            <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>-->
+
+    
+
+
+
     <script src="js/app.js"></script>
     <link rel="stylesheet" media="all" type="text/css" href="css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="css/animations.css"/>
@@ -101,7 +96,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
-
+<!-- WOW -->
+<link rel="stylesheet" href="css/animate.css">
 
 
 <!-- JQuery -->
@@ -112,5 +108,10 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
-            
+<!-- WOW JavaScript -->
+<script> wow = new WOW().init(); </script>
+
+
+<script> $('.navbar-nav>li>a').on('click', function(){ $('.navbar-collapse').collapse('hide'); });</script>
+
 </html>

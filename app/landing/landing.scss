@@ -13,6 +13,11 @@
     margin:150px auto;
 }
 
+.quateImg {
+    width: 100%;
+    height: auto;
+}
+
 .main{
     z-index: 1;
    /* position: fixed;
@@ -49,7 +54,7 @@ button{
 }
 
 .cursive-header{
-    @media screen and (max-width: $wide){
+    /*@media screen and (max-width: $wide){
         font-size: 70px;
         height: 200px;
     }
@@ -72,7 +77,7 @@ button{
     @media screen and (max-width: $smallest){
         font-size: 23px;
         height: 130px;
-    }
+    }*/
     color: white;
     position: relative;
     display: block;
@@ -84,8 +89,9 @@ button{
         position: relative;
         width: 100%;
         display: flex;
+        left: 10%;
          
-        @media screen and (max-width: $wide){
+        /*@media screen and (max-width: $wide){
             left: 80px; 
         }
 	    @media screen and (max-width: $wideToMedium){
@@ -102,14 +108,16 @@ button{
         }
 	    @media screen and (max-width: $smallest){
             left: px; 
-        }
+        }*/
     }
     .rightsize{
         position: relative;  
         width: 100%;
         display: flex;
+        top: 30%;
+        left: 40%; 
          
-        @media screen and (max-width: $wide){
+        /*@media screen and (max-width: $wide){
             top: 20px;
             left: 265px; 
         }
@@ -130,11 +138,14 @@ button{
         }
 	    @media screen and (max-width: $smallest){
             top: 45px;
-        }
+        }*/
     }
 }
 .mainP{
-    @media screen and (max-width: $wide){
+    @media screen and (max-width: $tomobile){
+        font-size: 20px;
+    }
+    /*@media screen and (max-width: $wide){
         font-size: 25px;
     }
     @media screen and (max-width: $wideToMedium){
@@ -151,18 +162,24 @@ button{
     }
     @media screen and (max-width: $smallest){
         font-size: 13px;
-    }
+    }*/
     color: white;
     font-weight: lighter;
     width: 70%;
-    margin: 0 auto;
+    text-align: left !important;
+    font-weight: inherit;
+    padding-top: 10px;
 }
 
 .circles{
+    @media screen and (max-width: $tomobile){
+        display: inline-grid;
+    }
     li{
         display: inline-table;
         overflow: hidden;
-        @media screen and (max-width: $wide){
+        text-align: center;
+        /*@media screen and (max-width: $wide){
             margin: 50px 50px;
         }
         @media screen and (max-width: $wideToMedium){
@@ -179,11 +196,10 @@ button{
         }
         @media screen and (max-width: $smallest){
             margin: 5px 5px;
-        }
-        text-align: center;
+        }*/
 
         span{
-            @media screen and (max-width: $wide){
+            /*@media screen and (max-width: $wide){
                 max-width: 240px;
                 font-size: 16px;
                 margin-top: 20px;
@@ -212,13 +228,13 @@ button{
                 max-width: 85px;
                 font-size: 10px;
                 margin-top: 15px;
-            }
+            }*/
             display: flex;
             color: white;
             font-weight: lighter;
         }
         img{
-            @media screen and (max-width: $wide){
+            /*@media screen and (max-width: $wide){
                 width: 100px;
                 height: 100px;
             }
@@ -241,12 +257,13 @@ button{
             @media screen and (max-width: $smallest){
                 width: 28px;
                 height: 28px;
-            }
+            }*/
             position: relative;
             padding: 20px;
             border-radius: 100%;
             border: 3px solid white;
             background: rgba(255, 255, 255, 0.7);
+            margin-left: 25%;
         }
     }
 }

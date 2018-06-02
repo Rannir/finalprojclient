@@ -4,6 +4,7 @@ $small: 760px;
 $medium:960px;
 $wideToMedium:1280px;
 $wide: 1920px;
+$tomobile: 1059px;
 
 @import "auth/loggedOutMain/loggedOutMain.scss";
 @import "menu/menu.scss";
@@ -38,6 +39,12 @@ $wide: 1920px;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.view {
+    background: url(../css/images/mt-1002-home-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
 .cursive{
     font-family: 'Cursive', sans-serif;
 
@@ -50,8 +57,8 @@ ul{
 }
 html,body{
     font-family: 'SF', sans-serif;
-    width: 100%;
-    position: fixed;
+    //width: 100%;
+    //position: fixed;
 }
 .container{
     width: 65%;
@@ -104,30 +111,32 @@ md-input-container {
     text-transform: capitalize;
     letter-spacing: 3px;
     display: inline-block;
-   
+}
+.myCollapse{
+    display: none !important;
 }
 .main-btn:hover{
     background-color: green;
      border: 1px solid darkgreen;
 }
-.nav-bar {
-    background-color: transparent !important;
+.navbar {
+    background-color: black;
 }
 .logo {
     font-family: 'Lobster', cursive;
     font-size: 35px !important;
     color: white !important;
-    margin-left: 35px !important;
+    margin-left: 50px !important;
 }
 .logo-image{
     height: 60px;
     position: absolute;
-    top: 15px;
+    top: 10px;
     left: 0;
     margin: 0 6px;
     min-width: 0;
     line-height: 24px;
-    padding: 8px;
+    padding: 5px;
     border-radius: 50%;
 }
 md-toolbar {
@@ -144,5 +153,23 @@ md-toolbar {
 @media screen and (max-width: 600px) {
     .backgroundLandscape {
         background-color: lightblue;
+    }
+}
+
+.viewNg {
+    padding-top: 85px;
+}
+
+.view .full-bg-img, .view .mask {
+    overflow-y: overlay;
+}
+
+.leftul {
+    li{
+        border-right: 1px solid white;
+        padding: 0 10px;
+    }
+    li:last-child {
+        border:none;
     }
 }

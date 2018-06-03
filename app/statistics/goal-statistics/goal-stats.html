@@ -7,8 +7,9 @@
 
     <div class="divGraps">
         <section >
-            <canvas ng-if="!ctrl.showSorryMessage" class="chart chart-line grap" chart-data="ctrl.data" chart-labels="ctrl.labels" chart-series="ctrl.series" chart-options="ctrl.options">
-            </canvas> 
+            <div id="goalChart" class="grap"></div>
+            <!-- <canvas ng-if="!ctrl.showSorryMessage" class="chart chart-line grap" chart-data="ctrl.data" chart-labels="ctrl.labels" chart-series="ctrl.series" chart-options="ctrl.options">
+            </canvas>  -->
             <p ng-if="ctrl.showSorryMessage">SORRY! gain more goals to view this page!</p>
         </section>
     </div>

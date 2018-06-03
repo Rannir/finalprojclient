@@ -6,7 +6,8 @@ controller('progStatsController', function($scope, $location, $http, consts, use
         fill: false,
         lineTension: 0
     };
-    
+
+
     userService.getUser(null, function(usr){
         ctrl.usr = usr;
 
@@ -38,6 +39,40 @@ controller('progStatsController', function($scope, $location, $http, consts, use
             
             ctrl.data.push(usr.Goal.GoalWeight);
             ctrl.labels.push("Goal weight");
+
+            ctrl.chartData=[];
+            let j = 0;
+
+            dashydash.forEach(ctrl.data, function(value) {
+                j++;
+                ctrl.chartData.push( {x: j, y: value, label: `${j}`, indexLabel:"", markerColor:""});
+            });
+            ctrl.chartData[0].indexLabel="Starting weight";
+            ctrl.chartData[0].markerColor ="green";
+            ctrl.chartData[j-2].indexLabel="Current weight";
+            ctrl.chartData[j-2].markerColor ="blue";
+            ctrl.chartData[j-1].indexLabel="Goal weight";
+            ctrl.chartData[j-1].markerColor ="red";
+            
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                backgroundColor: "#ff000000",
+                axisX: {
+                    minimum: 1,
+                    maximum: j,
+                },
+                data: [{
+                    indexLabelMaxWidth: 50,
+                    indexLabelFontSize: 12,
+                    indexLabelFontColor: "darkSlateGray",
+                    name: "views",
+                    type: "area",
+                    fillOpacity: .5,
+                    dataPoints: ctrl.chartData
+                }]
+            });
+            chart.render();
+
         });
     });
     

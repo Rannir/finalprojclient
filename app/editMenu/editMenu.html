@@ -143,27 +143,23 @@
                 <tr>
                     <td colspan=6><span>Acceptable Ranges</span></td>
                 </tr>
-                <tr>
+                <tr class="acceptable-ranges">
                     <td>&#9;</td>
-                    <td><span>Protains</span></td>
-                    <td><span>Fats</span></td>
-                    <td><span>calories</span></td>
-                    <td><span>carbohydrates</span></td>
-                    <td>&#9;</td>
-                </tr>
-                <tr>
-                        <td>&#9;</td>
-                    <td ng-class="{exceedAlert: ctrl.exceedProteins}">
-                        <span>{{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}</span>
+                    <td>
+                        <span>Protains</span>
+                        <span ng-class="{exceedAlert: ctrl.exceedProteins}">{{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}</span>
                     </td>
-                    <td ng-class="{exceedAlert: ctrl.exceedFats}">
-                        <span>{{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}</span>
+                    <td>
+                        <span>Fats</span>
+                        <span ng-class="{exceedAlert: ctrl.exceedFats}">{{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}</span>
                     </td>
-                    <td ng-class="{exceedAlert: ctrl.exceedCalories}">
-                        <span>{{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}</>
+                    <td>
+                        <span>calories</span>
+                        <span ng-class="{exceedAlert: ctrl.exceedCalories}">{{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}</>
                     </td>
-                    <td ng-class="{exceedAlert: ctrl.exceedCarbohydrates}">
-                        <span>{{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}</span>
+                    <td>
+                        <span>carbohydrates</span>
+                        <span ng-class="{exceedAlert: ctrl.exceedCarbohydrates}">{{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}</span>
                     </td>
                     <td>&#9;</td>
                 </tr>

@@ -140,30 +140,25 @@
                 <tr>
                         <td colspan=6><br/></td>
                 </tr>
-                <tr>
-                    <td colspan=6><span>Acceptable Ranges</span></td>
-                </tr>
-                <tr class="acceptable-ranges">
-                    <td>&#9;</td>
-                    <td>
-                        <span>Protains</span>
-                        <span ng-class="{exceedAlert: ctrl.exceedProteins}">{{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}</span>
-                    </td>
-                    <td>
-                        <span>Fats</span>
-                        <span ng-class="{exceedAlert: ctrl.exceedFats}">{{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}</span>
-                    </td>
-                    <td>
-                        <span>calories</span>
-                        <span ng-class="{exceedAlert: ctrl.exceedCalories}">{{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}</>
-                    </td>
-                    <td>
-                        <span>carbohydrates</span>
-                        <span ng-class="{exceedAlert: ctrl.exceedCarbohydrates}">{{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}</span>
-                    </td>
-                    <td>&#9;</td>
-                </tr>
-            </table>    
+            </table>
+            <h5 id="AR-title">Acceptable Ranges</h5>
+            <div class="div-O">
+                <span>Protains</span>
+                <span ng-class="{exceedAlert: ctrl.exceedProteins}">{{ctrl.nautritionGoals.minProteins}} - {{ctrl.nautritionGoals.maxProteins}}</span>
+            </div>
+            <div class="div-O">
+                <span>Fats</span>
+                <span ng-class="{exceedAlert: ctrl.exceedFats}">{{ctrl.nautritionGoals.minFats}} - {{ctrl.nautritionGoals.maxFats}}</span>
+            </div>
+            <div class="div-O">
+                <span>calories</span>
+                <span ng-class="{exceedAlert: ctrl.exceedCalories}">{{ctrl.nautritionGoals.minCalories}} - {{ctrl.nautritionGoals.maxCalories}}
+                    </>
+            </div>
+            <div class="div-O">
+                <span>carbohydrates</span>
+                <span ng-class="{exceedAlert: ctrl.exceedCarbohydrates}">{{ctrl.nautritionGoals.minCarbohydrates}} - {{ctrl.nautritionGoals.maxCarbohydrates}}</span>
+            </div>
         </div>          
         <br/>
         <md-button ng-click="ctrl.Finish()" ng-show="!ctrl.editable" ng-disabled="ctrl.loader">Finish</md-button>

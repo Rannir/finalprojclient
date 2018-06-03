@@ -7,22 +7,25 @@
     // max-width: 50%;
 }
 
-.acceptable-ranges {
+.div-O {
+    width: 20%;
+    display: inline-block;
+
     span {
-        display:block;
+        display: block;
     }
 
     @media screen and (max-width: $small){
-       display: block;
-
-       td {
-           display: block;    
-		   position: relative;
-       }
-
-
+        width: 40%;
     }
 
+    @media screen and (max-width: $smallest){
+        width: 100%;
+    }
+}
+
+#AR-title {
+    margin-bottom: 20px;
 }
 
 .boundaryLine td{

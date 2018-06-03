@@ -20,7 +20,6 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
             <div class="collapse navbar-collapse" id="navbarSupportedContent"  data-toggle="collapse" data-target="#navbarSupportedContent" >
                     <ul class="navbar-nav mr-auto leftul" ng-show="hasLogged()">
                         <li class="nav-item">
@@ -45,13 +44,12 @@
                             <a class="nav-link" ng-click="createMenu()">Create Menu</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ml-auto" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        <li class="nav-item">
-                                <a ng-show="!hasLogged()" class="nav-link" ng-href="#/login"> Login </a>
-                                <a class="nav-link" ng-show="hasLogged()" ng-click="logout()"><i class="fa fa-sign-out fa-2x" aria-hidden="true" title="Logout"></i></a>
-                        </li>
+                    <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                    <a ng-show="!hasLogged()" class="nav-link" ng-href="#/login"> Login </a>
+                                    <a class="nav-link" ng-show="hasLogged()" ng-click="logout()">Logout</a>
+                            </li>
                     </ul>
-                </div>
         </nav>
         <main class="text-center">
             <div>

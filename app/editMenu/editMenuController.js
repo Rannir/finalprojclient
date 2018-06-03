@@ -50,24 +50,7 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
       
 
     ctrl.Finish = function() {
-        if(ctrl.editable) {
-            userService.getUser(null, function(usr){
-                usr.menu = ctrl.menu;
-                var menuHelper = {
-                    UserID: usr.UserID, 
-                    menu: ctrl.menu
-                };
-    
-                $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
-                    usr.Goal.MenuID = data.Goal.MenuID;
-                    userService.updateGoalCache(usr.Goal);
-                    $location.path("/main");
-                });
-            });
-        }
-        else {
-            $location.path("/main");
-        }
+        $location.path("/main");
     }
 
     function distinctMenuItems() {
@@ -139,6 +122,22 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
             dashydash.remove(ctrl.DistinctMenu.Breakfast, {'FoodID' : 0});
             dashydash.remove(ctrl.DistinctMenu.Lunch, {'FoodID' : 0});
             dashydash.remove(ctrl.DistinctMenu.Dinner, {'FoodID' : 0});
+
+            if (ctrl.menu.MenuID = 0) {
+                userService.getUser(null, function(usr){
+                    usr.menu = ctrl.menu;
+                    var menuHelper = {
+                        UserID: usr.UserID, 
+                        menu: ctrl.menu
+                    };
+        
+                    $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
+                        usr.Goal.MenuID = data.Goal.MenuID;
+                        userService.updateGoalCache(usr.Goal);
+                        $location.path("/main");
+                    });
+                });
+            }
         }
 
         ctrl.editable = !ctrl.editable;

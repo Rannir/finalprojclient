@@ -21,20 +21,20 @@ angular.module('personalTrainer').controller('menuController', function($scope, 
         var CountedMenu;
         ctrl.CountedMenus = [];
 
-        for (const i in ctrl.menus) {
+        for (const menuID in ctrl.menus) {
             CountedMenu = {
                 Breakfast : [],
                 Lunch : [],
                 Dinner : []
             };
     
-            CountedMenu.Breakfast = dashydash.uniqBy(ctrl.menus[i].Breakfast, 'FoodID');
-            CountedMenu.Lunch = dashydash.uniqBy(ctrl.menus[i].Lunch, 'FoodID');
-            CountedMenu.Dinner = dashydash.uniqBy(ctrl.menus[i].Dinner, 'FoodID');
+            CountedMenu.Breakfast = dashydash.uniqBy(ctrl.menus[menuID].Breakfast, 'FoodID');
+            CountedMenu.Lunch = dashydash.uniqBy(ctrl.menus[menuID].Lunch, 'FoodID');
+            CountedMenu.Dinner = dashydash.uniqBy(ctrl.menus[menuID].Dinner, 'FoodID');
             
             for (const mealType in CountedMenu) {
                 for (const i in CountedMenu[mealType]) {
-                    CountedMenu[mealType][i].Count = dashydash.filter(ctrl.menus[i][mealType], ['FoodID', CountedMenu[mealType][i].FoodID]).length;       
+                    CountedMenu[mealType][i].Count = dashydash.filter(ctrl.menus[menuID][mealType], ['FoodID', CountedMenu[mealType][i].FoodID]).length;       
                 }
                 dashydash.sortBy(CountedMenu[mealType], ['FoodID']);
             }

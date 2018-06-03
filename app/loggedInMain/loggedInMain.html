@@ -5,21 +5,22 @@
         </h2>   
     </section>
 
-    <div class="divGraps">
-        <section >
-            <section>
-                <div class="personalDetailsItem">
-                    <h3> current details </h3>
-                    <p>current weight : {{ctrl.user.Measurement.Weight}}</p>
-                    <p>current body fat : {{ctrl.user.Measurement.BodyFat}}</p>
-                    </div>
-                <div class="personalDetailsItem">
-                    <h3> goal details </h3>
-                    <p>goal starting weight : {{ctrl.user.Goal.StartingWeight}}</p>
-                    <p>goal weight : {{ctrl.user.Goal.GoalWeight}}</p>
-                    <p>goal body fat : {{ctrl.user.Goal.BodyFat}}</p>
-                <div>
-            </section>
-        </section>
+    <div class="divDetails">
+
+        <div class="row">
+            <div class="col-md-6 divInDetails">
+                <h3> Current Details </h3>
+                <p>Weight : {{ctrl.user.Measurement.Weight}}</p>
+                <p>Body Fat : {{ctrl.user.Measurement.BodyFat}}</p>
+            </div>
+            <div class="col-md-6 divInDetails">
+                <h3> Goal Details </h3>
+                <p>Starting Weight : {{ctrl.user.Goal.StartingWeight}}</p>
+                <p>Weight : {{ctrl.user.Goal.GoalWeight}}</p>
+                <p>Body Fat : {{ctrl.user.Goal.BodyFat}}</p>
+            </div>
+        </div>
+
+        
     </div>
 </div>

@@ -37,9 +37,9 @@
             </table>
         </div>        
         <br/>
-        <md-button class="md-raised" ng-click="ctrl.prevMenu()" ng-disabled="!(ctrl.menuIndex > 0)">Previous</md-button>
-        <md-button class="md-raised" ng-click="ctrl.editMenu()">Choose</md-button>
-        <md-button class="md-raised" ng-click="ctrl.nextMenu()" ng-disabled="!(ctrl.menuIndex < 4)">Next</md-button>
+        <md-button class="md-raised" ng-click="ctrl.prevMenu()" ng-disabled="!(ctrl.menuIndex > 0) && ctrl.loader">Previous</md-button>
+        <md-button class="md-raised" ng-click="ctrl.editMenu()" ng-disabled="ctrl.loader">Choose</md-button>
+        <md-button class="md-raised" ng-click="ctrl.nextMenu()" ng-disabled="!(ctrl.menuIndex < 4) && ctrl.loader">Next</md-button>
         <!-- <md-button class="md-raised" ng-click="ctrl.editMenu()">Edit</md-button> -->
     </section>
 </div>

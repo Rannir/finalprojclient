@@ -29,7 +29,7 @@
                 <input name="confirmPassword" ng-model="ctrl.model.confirmPassword" required 
                 ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/" type="password" >
             </md-input-container>
-            <md-button type="submit" class="md-raised" ng-click="ctrl.moveSection(1)" >next</md-button>
+            <md-button type="submit" class="md-raised" ng-mouseup="ctrl.moveSection(1)" >next</md-button>
             <!-- <div ng-messages="userForm.firstName.$error" ng-show="ctrl.checkValid(1)">
                     <div ng-message="required">firstName</div>
             </div> -->
@@ -58,7 +58,7 @@
                 <label>BodyFat</label>
                 <input name="meBodyFat"  required ng-model="ctrl.model.Measurement.BodyFat" type="number">
             </md-input-container>
-            <md-button type="submit" class="md-raised" ng-click="ctrl.moveSection(2)" >next</md-button>
+            <md-button type="submit" class="md-raised" ng-mouseup="ctrl.moveSection(2)" >next</md-button>
         </section>
         <section ng-if="ctrl.section == 3" class="sectionReg">
           
@@ -74,7 +74,7 @@
                 <label>BodyFat</label>
                 <input name="goalBodyFat" ng-model="ctrl.model.Goal.BodyFat" required type="number">
             </md-input-container>
-            <md-button  type="submit" class="md-raised startMyJourneybtn" ng-click="ctrl.register()">GO!</md-button>
+            <md-button  type="submit" class="md-raised startMyJourneybtn" ng-mouseup="ctrl.register()">GO!</md-button>
         </section>
     </form> 
 </div>

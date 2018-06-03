@@ -123,7 +123,7 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
             dashydash.remove(ctrl.DistinctMenu.Lunch, {'FoodID' : 0});
             dashydash.remove(ctrl.DistinctMenu.Dinner, {'FoodID' : 0});
 
-            if (ctrl.menu.MenuID = 0) {
+            if (ctrl.menu.MenuID == 0) {
                 userService.getUser(null, function(usr){
                     usr.menu = ctrl.menu;
                     var menuHelper = {
@@ -132,9 +132,9 @@ controller('editMenuController', function($scope, $http, consts, userService, $m
                     };
         
                     $http.post(`${consts.insertApi}`, menuHelper).then(function({data}) {
-                        usr.Goal.MenuID = data.Goal.MenuID;
+                        usr.Goal.MenuID = data.MenuID;
                         userService.updateGoalCache(usr.Goal);
-                        $location.path("/main");
+                        userService.setMenu(data);
                     });
                 });
             }

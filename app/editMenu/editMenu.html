@@ -170,7 +170,7 @@
             </table>    
         </div>          
         <br/>
-        <md-button ng-click="ctrl.Finish()" ng-show="!ctrl.editable">Finish</md-button>
-        <md-button ng-click="ctrl.Edit()">{{ctrl.editable ? 'Done':'Edit'}}</md-button>
+        <md-button ng-click="ctrl.Finish()" ng-show="!ctrl.editable" ng-disabled="ctrl.loader">Finish</md-button>
+        <md-button ng-click="ctrl.Edit()" ng-disabled="ctrl.loader">{{ctrl.editable ? 'Done':'Edit'}}</md-button>
     </section>
 </div>

@@ -192,6 +192,17 @@ md-toolbar {
     }
 }
 
+.navH{
+    @media screen and (max-width: 992px){
+        display: none !important;
+    }
+}
+
+.navHS{
+    @media screen and (min-width: 992px){
+        display: none !important;
+    }
+}
 
 .autoSize {
     width: 100%;
